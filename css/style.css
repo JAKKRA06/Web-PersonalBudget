@@ -1,0 +1,630 @@
+body
+{
+    background-image : url('../img/background1.jpg');
+    font-family      : 'Lato', sans-serif;
+}
+
+section h1
+{
+	text-align    : center;
+	color         : #fff;
+	margin-bottom : 10px;
+}
+
+header h2
+{
+    color          : #fff;
+    font-size      : 36px;
+    text-align     : center;
+    margin-top     : 50px;
+    margin-bottom  : 40px;
+}
+
+header a
+{
+	color           : #fff;
+	text-decoration : none;
+}
+
+header a:hover
+{
+	color            : #fff;
+	text-decoration  : none;
+	background-color : white;
+	border-radius    : 20px;
+	opacity          : 0.5;
+	padding          : 0 10px;
+}
+.description
+{
+    text-align       : center;
+    width            : 400px;
+    background-color : #fff;
+    margin           : auto;
+    opacity          : 0.8;
+    padding          : 20px;
+    border-radius    : 50px;
+    border           : 2px solid #000;
+}
+
+.description p
+{
+    font-size : 22px;
+}
+
+.btn
+{
+    margin-bottom : 20px;
+    margin-top    : 20px;
+    border-radius : 10px;
+}
+
+.description a 
+{
+    text-decoration : none;
+    display         : block;
+    color           : #fff;
+}
+
+.description h1
+{
+    color : #000;
+}
+
+.description  a:hover
+{
+    text-decoration : none;
+    color           : #000;
+}
+
+.custom-select
+{
+    border-radius    : 15px;
+    color            : #000;
+    background-color : lightyellow;
+    border           : 2px solid #000;
+    font-size        : 20px;
+    padding          : 0 10px;
+	margin-top       : 5px;
+	margin-bottom    : 5px;
+}
+
+.custom-select:focus
+{
+    outline          : none;
+    background-color : lightyellow;
+}
+
+input[type=text],
+input[type=date],
+input[type=password]
+{
+    border           : 2px solid #000;
+    border-radius    : 15px;
+    color            : #000;
+    font-size        : 20px;
+    padding          : 0 10px;
+    background-color : lightyellow;
+}
+
+input[type=text]:focus,
+input[type=password]:focus
+{
+	background-color : lightyellow;
+}
+
+.logger
+{
+    position         : absolute;
+    top              : 10px;
+    right            : 0;
+    background-color : #fff;
+    opacity          : 0.9;
+    font-size        : 15px;
+    border-radius    : 20px;
+    padding          : 5px 20px;
+    border           : 2px solid #000;
+}
+
+.nav
+{
+    width            : 100%;
+    border           : 2px solid #000;
+    background-color : #fff;
+    opacity          : 0.8;
+    border-radius    : 50px;
+    max-width        : 1000px;
+    padding          : 10px;
+    font-size        : 18px;
+    overflow         : hidden;
+    text-align       : center;
+    margin-left      : auto;
+    margin-right     : auto;
+    margin-bottom    : 30px;
+}
+
+.nav a
+{
+    color           : #000;
+    display         : block;
+    text-decoration : none;
+    text-align      : center;
+    padding         : 5px  20px;
+}
+
+
+
+.nav a:hover
+{
+    color            : #fff;
+    background-color : #000;
+    opacity          : 0.5;
+    border-radius    : 20px;
+    padding          : 5px 20px;
+    text-decoration  : none;
+    cursor:          : pointer;
+}
+
+.tab-content
+{
+    margin-left   : auto;
+    margin-right  : auto;
+    border-radius : 50px;
+    border        : 2px solid #000;
+    opacity       : 0.8;
+    max-width     : 1000px;
+    margin-bottom : 20px;
+}
+
+.active 
+{
+    color            : #000;
+    background-color : lightgrey;
+    border-radius    : 20px;
+    font-weight      : 700;
+}
+/* Hide the link that should open and close the topnav on small screens */
+.nav .icon {
+    display : none;
+}
+
+@media screen and (max-width: 992px) {
+  .nav a:not(:first-child) {display: none;}
+  .nav a.icon {
+    display : block;
+    color   : red;   
+    width   : 100%;
+  }
+.nav a:first-child
+    {
+        width : 100%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+ .nav.responsive {position: relative;}
+  .nav.responsive a.icon {
+    }
+    
+  .nav.responsive a {
+    display    : block;
+    float      : left;
+    min-height : 40px;
+    width      : 100%;
+    text-align : center;
+  }
+}
+
+.danger
+{
+    padding          : 30px;
+    background-color : lightgreen;
+    border-radius    : 50px;
+    font-weight      : 500;
+    text-align       : center;
+    width            : 50%;
+    font-size        : 22px;
+}
+
+.info
+{
+    border-radius    : 50px;
+    font-weight      : 500;
+    width            : 50%;
+    background-color : lightblue;
+    text-align       : center;
+    font-size        : 22px;
+}
+
+#income,
+#mainpage,
+#expense,
+#balance,
+#settings
+{
+    background-color : #fff;
+    border-radius    : 50px;
+    text-align       : center;
+    padding          : 20px;
+    margin-left      : auto;
+    margin-right     : auto;
+}
+
+#income input,
+#expense input
+{
+    text-align : center;
+}
+
+.btn
+{
+    text-decoration : none;
+    display         : block;
+	margin-left     : auto;
+	margin-right    : auto;
+    color           : #fff;
+}
+
+.btn:hover
+{
+    color           : #000;
+    text-decoration : none;
+}
+
+.add 
+{
+    border-radius : 50%;
+    height        : 70px;
+    width         : 70px;
+}
+
+.add i
+{
+    text-decoration : none;
+    display         : block;
+    color           : #fff;
+    font-size       : 26px;
+}
+
+.add i:hover
+{
+    color           : #000;
+    text-decoration : none;
+}
+
+.row label
+{
+    float      : left;
+    font-size  : 22px;
+    margin-top : 10px;
+}
+
+.title
+{
+    margin-bottom : 10px;
+    font-size     : 24px;
+    font-weight   : 600;
+}
+
+.dropdown
+{
+    float         : right;
+	border-radius : 20px;
+}
+
+.dropPeroid
+{
+	background-color : lightgrey;
+	border-radius    : 20px;
+	cursor           : pointer;
+	padding          : 10px;
+	margin-bottom    : 10px;
+	font-size        : 20px;
+	font-weight      : 600;
+}
+ 
+.dropPeroid:focus
+{
+	outline : none;
+}
+.dropPeroid option:hover
+{
+    text-align    : center; 
+	border-radius : 20px;
+}
+
+#dropDownPeroid
+{
+    padding         : 5px;
+    margin-bottom   : 20px;
+	font-size       : 28px;
+	text-decoration : underline;
+}
+
+.table1
+{
+    border          : 3px solid green;
+    border-radius   : 20px;
+    min-height      : 300px;
+    width           : 250px;
+    border-collapse : separate;
+    margin          : auto;
+}
+
+.table2
+{
+    border          : 3px solid red;
+    border-radius   : 20px;
+    min-height      : 300px;
+    width           : 250px;
+    border-collapse : separate;
+    margin          : auto;
+}
+.comment
+{
+    margin : 20px;
+}
+
+#tableTitle
+{
+    border-bottom   : 1px solid;
+    height          : 60px;
+    font-size       : 20px;
+    text-decoration : underline;
+}
+
+#tableTitleHome
+{
+    max-width        : 250px;
+    height           : 60px;
+    font-size        : 26px;
+    text-align       : center;
+    background-color : green;
+    border-radius    : 15px;
+}
+
+#tableIncome,
+#tableExpense
+{
+    text-align : left;
+    padding    : 5px;
+}
+
+td a
+{
+    color   : green;
+    display : block;
+}
+
+td a:hover
+{
+    color           : red;
+    text-decoration : none;
+    
+}
+
+td p
+{
+    font-size  : 18px;
+    text-align : center;
+    margin-top : 30px;
+}
+
+#tableTitleBulb
+{
+    max-width        : 250px;
+    height           : 60px;
+    font-size        : 26px;
+    text-align       : center;
+    background-color : lightblue;
+    border-radius    : 15px;
+}
+
+#tableTitleHome:hover
+{
+    background-color : green;
+    border-radius    : 15px;
+    color            : #fff;
+}
+
+#tableTitleBulb:hover
+{
+    background-color : lightblue;
+    border-radius    : 15px;
+    color            : #fff;
+}
+
+.tableMenu
+{    
+    border          : 3px solid grey;
+    border-radius   : 20px;
+    min-height      : 300px;
+    max-width       : 250px;
+    border-collapse : separate;
+    margin          : auto;
+}
+.error
+{
+	color         : red;
+	margin-top    : 10px;
+	margin-bottom : 10px;
+}
+
+.income_success
+{
+    text-align    : center;
+    color         : green;
+	font-size     : 20px;
+    margin-bottom : 10px;	
+}
+
+.expense_success
+{
+    text-align    : center;
+    color         : red;
+    margin-bottom : 10px;
+	font-size     : 20px;	
+}
+	
+#comment
+{
+	font-size : 20px;
+}
+
+.modal-content
+{
+	padding    :  0 20px;
+	text-align : center;
+}
+
+.category_list_name_income
+{
+	text-align : center;
+	font-size  : 20px;
+	color      : green;
+}
+
+.category_list_name_income:hover
+{
+	text-decoration : underline;
+	cursor          : pointer;
+}
+.category_list_name_expense
+{
+	text-align : center;
+	font-size  : 20px;
+	color      : red;
+}
+
+.category_list_name_expense:hover
+{
+	text-decoration : underline;
+	cursor          : pointer;
+}
+
+.icon-pencil,
+.icon-trash
+{
+	cursor     : pointer;
+	text-align : right;
+}
+
+.saving
+{
+	color : green;
+}
+
+.debt
+{
+	color : red;
+}
+
+.dropbtn {
+    background-color : #0066cc;
+    color            : white;
+    padding          : 10px;
+    font-size        : 16px;
+    border           : none;
+	border-radius    : 20px;
+}
+
+.dropdown {
+    position : relative;
+    display  : inline-block;
+}
+
+.dropdown-content {
+    display          : none;
+    position         : absolute;
+    background-color : #f1f1f1;
+    min-width        : 150px;
+    box-shadow       : 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index          : 1;
+}
+
+.dropdown-content a {
+    color           : black;
+    padding         : 12px 16px;
+    text-decoration : none;
+    display         : block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;
+border-radius: 20px;}
+
+.dropdown:hover .dropdown-content {display: block;
+border-radius: 20px;
+border: 1px solid #000;}
+
+.dropdown:hover .dropbtn {background-color: #0066cc;}
+
+#comentary p:hover
+{
+	text-decoration : underline;
+	cursor          : pointer;
+}
+
+.modal-content
+{
+	border-radius    : 20px;
+	border           : 2px solid #000;
+	background-color : #efefef;
+	opacity          : 0.95;
+}
+
+.modalForm
+{
+	border        : 1px solid #000;
+	border-radius : 20px;
+	width         : auto;
+	text-align    : left;
+	padding       : 15px;
+	
+}
+
+.editionUser
+{
+	margin        : 30px;
+	border        : 1px solid #000;
+	border-radius : 20px;
+	padding       : 40px 15px;
+}
+#editionButtons
+{
+	width     : 220px;
+	font-size :15px;
+}
+
+.modalInputText:focus
+{
+	outline : none;
+}
+
+.edition p
+{
+	font-size : 20px;
+}
+
+.modal-body p
+{
+	text-align  : left;
+	font-weight : 400;
+}
+.tableResultIncome
+{
+
+    border          : 2px solid green;
+    border-radius   : 20px;
+    width           : 250px;
+    border-collapse : separate;
+    margin-top      : 10px;
+}
+.tableResultExpense
+{
+
+    border          : 2px solid red;
+    border-radius   : 20px;
+    width           : 250px;
+    border-collapse : separate;
+    margin-top      : 10px;
+}

@@ -1,0 +1,9 @@
+
+.icon-logout:before { content: '\e800'; } /* '' */
+.icon-reply:before { content: '\e801'; } /* '' */
+.icon-plus:before { content: '\e802'; } /* '' */
+.icon-minus:before { content: '\e803'; } /* '' */
+.icon-wrench:before { content: '\e804'; } /* '' */
+.icon-chart-line:before { content: '\f201'; } /* '' */
+.icon-street-view:before { content: '\f21d'; } /* '' */
+.icon-user-plus:before { content: '\f234'; } /* '' */
