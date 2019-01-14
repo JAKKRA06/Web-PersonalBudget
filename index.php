@@ -149,7 +149,7 @@ try{
       $dropIncomeCategory = $_POST['dropIncomeCategory'];
       switch ($PB->dropIncomeCategory($dropIncomeCategory)) {
         case ACTION_OK :
-          $PB->setMessage("Usunięto wybraną kategorię !".'</br>'." Jeśli posiadała jakieś wpisy to zostały one przeniesione do kategorii 'Pozostałe'.");
+          $PB->setMessage('Usunięto wybraną kategorię !');
           break;
         case ACTION_FAILED :
           $PB->setMessage('Nie udało się usunąć wybranej kategorii !');
@@ -164,7 +164,7 @@ try{
       $dropExpenseCategory = $_POST['dropExpenseCategory'];
       switch ($PB->dropExpenseCategory($dropExpenseCategory)) {
         case ACTION_OK :
-          $PB->setMessage("Usunięto wybraną kategorię !".'</br>'." Jeśli posiadała jakieś wpisy to zostały one przeniesione do kategorii 'Pozostałe'.");
+          $PB->setMessage('Usunięto wybraną kategorię !');
           break;
         case ACTION_FAILED :
           $PB->setMessage('Nie udało się usunąć wybranej kategorii !');

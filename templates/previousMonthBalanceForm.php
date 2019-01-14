@@ -128,8 +128,8 @@ if ($result = $this->dbo->query($queryIncome)) :
                    echo '<div class="category_list"><i class="icon-bank"></i>'
                         . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
                         .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=previousMonth><i class="icon-pencil"></i></a>'
-                        .'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                        //.'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'"><i class="icon-trash"></i></a></div>'.'<br/>';
+                        //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
+                        .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'"><i class="icon-trash"></i></a></div>'.'<br/>';
 ?>
 
 <div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">

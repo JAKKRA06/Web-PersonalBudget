@@ -120,6 +120,7 @@
 					  <h4 class="modal-title">Usuń kategorię wydatku:</h4>
 					</div>
 					<div class="modal-body">
+						<p style="color: red">Jeśli wybrana kategoria posiada jakieś wpisy to zostaną one przeniesione do kategorii 'Pozostałe'.</p>
 						<form method="post" action="index.php?action=dropExpenseCategory">
 							<div class="modalForm">
                         <?php 
@@ -217,6 +218,7 @@
 					  <h4 class="modal-title">Usuń kategorię przychodu:</h4>
 					</div>
 					<div class="modal-body">
+						<p style="color: red">Jeśli wybrana kategoria posiada jakieś wpisy to zostaną one przeniesione do kategorii 'Pozostałe'.</p>						
 						<form method="post" action="index.php?action=dropIncomeCategory">
                             <div class="modalForm">
                         <?php 

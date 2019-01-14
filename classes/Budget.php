@@ -219,14 +219,14 @@ class Budget
 
     function addExpense()
     {
-		if (isset($_POST['expense_amount'])) {
+        if (isset($_POST['expense_amount'])) {
+
 			//spr kwoty
 			$amount = $_POST['expense_amount'];
 			
 			if (is_numeric($amount) == false) {
 				return INVALID_FORMAT;
 			}
-			
 			// spr daty 
 			$expenseDate = $_POST['expense_date'];
 
@@ -234,11 +234,11 @@ class Budget
 			$month = substr($expenseDate, 5, 2);
 			$day   = substr($expenseDate, 8);
 
-			if(checkdate((int)$month, (int)$day, (int)$year) == false) {
+			if (checkdate((int)$month, (int)$day, (int)$year) == false) {
                 return INVALID_FORMAT;
 			}
-
-			// spr wyboru listy
+		
+		    // spr wyboru listy
 			$paymentMethodsArray = [];
 
 			$payments = $this->selectAllPaymentMethods();
@@ -246,20 +246,17 @@ class Budget
 				  $paymentMethodsArray[] .= $row['name'];
 			}
 
-            $paymentMethodFromPost = $_POST['expense_payment_method'];
+			$paymentMethodFromPost = $_POST['expense_payment_method'];
 
 			if(!in_array($paymentMethodFromPost, $paymentMethodsArray)) {
                 return FORM_DATA_MISSING;
 			}
-
-			//spr komentarza max 100 
-			
+		
 			$comment = $_POST['expense_comment'];
-			if(strlen($comment) > 100 ) {
+			if (strlen($comment) > 100 ) {
                 return COMMENT_TOO_LONG;
-          	}
-			
-			// spr wyboru listy
+            }
+
             $expenseCategorySelect = $_POST['expense_category_select'];
 			$expensesCategoryArray = [];
 
@@ -273,31 +270,38 @@ class Budget
 			}
 
 
+            $paymentMethod = $_POST['expense_payment_method'];
+            $username      = $_SESSION['loginUser'];
+			
             $userId = $_SESSION['userId'];					
 
             $query = "SELECT id FROM expenses_category_assigned_to_users WHERE "
                    . "name = '$expenseCategorySelect' AND user_id = '$userId'";
 
-            $result = $this->dbo->query($query);
-            $row    = $result->fetch_assoc();
-			$idExpenseAssignedToUser = $row['id'];
-
-			$query = "SELECT id FROM payment_methods_assigned_to_users WHERE "
-			       . "name = '$paymentMethodFromPost' AND user_id = '$userId'";
+	        $query  = "SELECT id FROM expenses_category_assigned_to_users WHERE "
+	                . "name = '$expenseCategorySelect' AND user_id = '$userId'";
 
             $result = $this->dbo->query($query);
-            $row    = $result->fetch_assoc();
-			$idPaymentAssignedToUser = $row['id'];
+            $row    = $result->fetch_assoc();       
+            $idExpenseAssignedToUser = $row['id'];
 
-			$query1 = "INSERT INTO expenses VALUES" 
-				   . " (NULL, '$userId', '$idExpenseAssignedToUser',"
-				   . " '$idPaymentAssignedToUser', $amount', '$expenseDate', '$comment')";
+            $query  = "SELECT id FROM payment_methods_assigned_to_users WHERE "
+                    . "name = '$paymentMethod' AND user_id = '$userId'";
+
+            $result = $this->dbo->query($query);
+            $row    = $result->fetch_assoc();
+			$idPaymentMethod = $row['id'];
+
+			$query  = "INSERT INTO expenses VALUES" 
+				    . "(NULL, '$userId',  '$idExpenseAssignedToUser',"
+				    . " '$idPaymentMethod', '$amount', '$expenseDate', '$comment')";
 			
-			if($this->dbo->query($query1)) {
+			if ($this->dbo->query($query)) {
 				return ACTION_OK;
 			} else {
 				return SERVER_ERROR;
-			}
+			}			
+			
 		}
 	}
 
