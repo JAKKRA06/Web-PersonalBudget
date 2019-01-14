@@ -162,6 +162,8 @@ class User extends MyDB
         return $newPassword->editUserPassword();
     }
 
+
+
     function addIncome() 
     {
         $income = new Budget($this->dbo);
@@ -174,7 +176,6 @@ class User extends MyDB
         return $modifyIncome->modifyIncome($idRecordToModify);
     }
 
-
     function addExpense() 
     {
         $expense = new Budget($this->dbo);
@@ -186,7 +187,6 @@ class User extends MyDB
         $modifyExpense = new Budget($this->dbo);
         return $modifyExpense->modifyExpense($idRecordToModify);  
     }
-
 
     function addIncomeCategoryName($categoryName)
     {
@@ -208,15 +208,11 @@ class User extends MyDB
 
 
 
-    
-
     function showBalance($peroid, $startDate, $lastDate)
     {
         $balance = new Budget($this->dbo);
         $balance->showBalance($peroid, $startDate, $lastDate);
     }
-
-
 
 
 
@@ -237,8 +233,6 @@ class User extends MyDB
         $allPaymentMethods = new Budget($this->dbo);
         return $allPaymentMethods->selectAllPaymentMethods();
     }
-
-
 
     function selectSingleRowOfIncome($idRecordToModify)
     {
@@ -274,10 +268,6 @@ class User extends MyDB
 
 
 
-
-
-
-
     function dropExpenseCategory($dropExpenseCategory)
     {
         $balance = new Budget($this->dbo);
@@ -310,25 +300,20 @@ class User extends MyDB
 
 
 
-
-
     function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)
     {
-         
          $change = new Budget($this->dbo);
          return $change->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName);
     }
 
     function changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName)
     {
-         
          $change = new Budget($this->dbo);
          return $change->changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName);
     }
 
     function changePaymentMethod($categoryNameToModify, $newPaymentMethod)
     {
-         
          $change = new Budget($this->dbo);
          return $change->changePaymentMethod($categoryNameToModify, $newPaymentMethod);
     }

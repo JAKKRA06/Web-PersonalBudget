@@ -281,7 +281,7 @@ try{
       header('Location: index.php?action=showSettings');
       break;
     case 'changeExpenseCategory' :
-      $categoryNameToModify = $_POST['categoryNameToModify'];
+      $categoryNameToModify   = $_POST['categoryNameToModify'];
       $newExpenseCategoryName = $_POST['newExpenseCategoryName'];
       switch ($PB->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)) {
         case ACTION_OK :

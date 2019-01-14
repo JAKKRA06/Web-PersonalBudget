@@ -925,9 +925,8 @@ class Budget
     	if (!$this->dbo) {
     		return SERVER_ERROR;
     	}
-
+    	
     	$newCategoryName = ucwords(strtolower($categoryName));
-
         $query = "SELECT name FROM  expenses_category_assigned_to_users"
                . " WHERE name = '$newCategoryName'";
         if($result = $this->dbo->query($query)) {
@@ -939,7 +938,7 @@ class Budget
         $userId = $_SESSION['userId'];
 
     	$query = "INSERT INTO expenses_category_assigned_to_users VALUES"
-    	       . " (NULL, '$userId', '$categoryName')";
+    	       . " (NULL, '$userId', '$newCategoryName')";
 
     	if ($this->dbo->query($query)) {
     		return ACTION_OK;
