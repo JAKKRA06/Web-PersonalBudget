@@ -171,7 +171,7 @@ class User extends MyDB
     function modifyIncome($idRecordToModify)
     {
         $modifyIncome = new Budget($this->dbo);
-        return $modifyIncome->modifyIncome($idRecordToModify, $peroid, $startDate, $lastDate);
+        return $modifyIncome->modifyIncome($idRecordToModify);
     }
 
 

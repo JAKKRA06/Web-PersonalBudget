@@ -129,7 +129,7 @@ if ($result = $this->dbo->query($queryIncome)) :
 				        . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
 				        .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
                         //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                        .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'"><i class="icon-trash"></i></a></div>'.'<br/>';
+                        .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
 ?>
 
 <div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">
@@ -197,7 +197,7 @@ if ($result = $this->dbo->query($queryExpense)) :
                        . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
                        .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
                      //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                       .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'"><i class="icon-trash"></i></a></div>'.'<br/>';
+                       .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
 ?>
 
 <div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">

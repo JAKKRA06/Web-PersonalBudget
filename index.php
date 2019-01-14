@@ -4,7 +4,7 @@ spl_autoload_register('classLoader');
 session_start();
 
 try{
-  $PB = new User('localhost', 'root', '', 'personal_budget');
+ $PB = new User('localhost', 'root', '', 'personal_budget');
 
   $action = 'showStart';
   if(isset($_GET['action'])) {
@@ -192,6 +192,9 @@ try{
       break;
     case 'dropSingleRecordOfIncome' :
       $singleRecordId = $_GET['incomeId'];
+      $peroid         = $_GET['peroid'];
+      $startDate      = $_GET['startDate'];
+      $lastDate       = $_GET['lastDate'];     
       switch ($PB->dropSingleRecordOfIncome($singleRecordId)) {
         case ACTION_OK :
           $PB->setMessage("Usunięto wybrany rekord !");
@@ -203,10 +206,13 @@ try{
           $PB->setMessage('Błąd serwera !');
           break;
         }
-      header('Location: index.php?action=showBalance');
+      header('Location: index.php?action=showBalance&peroid='.$peroid.'&startDate='.$startDate.'&lastDate='.$lastDate.'');
       break;
     case 'dropSingleRecordOfExpense' :
       $singleRecordId = $_GET['expenseId'];
+      $peroid         = $_GET['peroid'];
+      $startDate      = $_GET['startDate'];
+      $lastDate       = $_GET['lastDate'];   
       switch ($PB->dropSingleRecordOfExpense($singleRecordId)) {
         case ACTION_OK :
           $PB->setMessage("Usunięto wybrany rekord !");
@@ -218,7 +224,7 @@ try{
           $PB->setMessage('Błąd serwera !');
           break;
         }
-      header('Location: index.php?action=showBalance');
+      header('Location: index.php?action=showBalance&peroid='.$peroid.'&startDate='.$startDate.'&lastDate='.$lastDate.'');
       break;
     case 'addIncomeCategoryName' :
       $categoryName = $_POST['incomeCategoryName'];
