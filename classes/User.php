@@ -11,10 +11,20 @@ class User extends MyDB
 
     function getActualUser()
     {
-        if (isset($_SESSION['loginUser'])) {
-            return $_SESSION['loginUser'];
-        } else
+        if(isset($_SESSION['userId'])) {
+            $userId = $_SESSION['userId'];
+            $query  = "SELECT username FROM users"
+                    . " WHERE id = '$userId'";
+
+            if ($result = $this->dbo->query($query)) {
+                $row = $result->fetch_assoc();
+
+                $_SESSION['loginUser'] = $row['username'];
+                return $_SESSION['loginUser'];
+            } 
+        } else {
             return null;
+        }
     }
     
     function setMessage($text) 
@@ -63,6 +73,8 @@ class User extends MyDB
                 return ACTION_FAILED;
             } else {
                 $_SESSION['loginUser'] = $row['username'];
+                $_SESSION['userId']    = $row['id'];
+
                 return ACTION_OK;
             }
         }
@@ -107,7 +119,7 @@ class User extends MyDB
 
         // tworzenie zmiennych sesyjnych, ktore beda zapamietane przez formularv przy blednej rejestracji
         
-        $_SESSION['R_nick'] = $nick;
+        $_SESSION['R_nick']     = $nick;
         $_SESSION['R_password'] = $password;
     
         $query = "INSERT INTO users VALUES (NULL, '$nick', '$password_hash')";
@@ -118,24 +130,36 @@ class User extends MyDB
                         
             $row = $result->fetch_assoc();
                         
-            $user_id = $row['id'];
+            $userId = $row['id'];
             $query = "INSERT INTO incomes_category_assigned_to_users"
-                   . " (user_id, name) SELECT '$user_id', name FROM "
+                   . " (user_id, name) SELECT '$userId', name FROM "
                    . " incomes_category_default";        
             $this->dbo->query($query); 
 
             $query = "INSERT INTO expenses_category_assigned_to_users"
-                   . " (user_id, name) SELECT  '$user_id', name FROM "
+                   . " (user_id, name) SELECT  '$userId', name FROM "
                    . "expenses_category_default";
             $this->dbo->query($query);
             
             $query = "INSERT INTO payment_methods_assigned_to_users "
-                   . "(user_id, name) SELECT '$user_id', name FROM "
+                   . "(user_id, name) SELECT '$userId', name FROM "
                    . "payment_methods_default";
             $this->dbo->query($query);
                         
             return ACTION_OK;               
         }
+    }
+
+    function editUserLogin()
+    {
+        $newLogin = new Budget($this->dbo);
+        return $newLogin->editUserLogin();
+    }
+
+    function editUserPassword()
+    {
+        $newPassword = new Budget($this->dbo);
+        return $newPassword->editUserPassword();
     }
 
     function addIncome() 
@@ -144,16 +168,168 @@ class User extends MyDB
         return $income->addIncome();
     }
 
+    function modifyIncome($idRecordToModify)
+    {
+        $modifyIncome = new Budget($this->dbo);
+        return $modifyIncome->modifyIncome($idRecordToModify, $peroid, $startDate, $lastDate);
+    }
+
+
     function addExpense() 
     {
         $expense = new Budget($this->dbo);
         return $expense->addExpense();
     }
-
-    function showBalance($peroid)
+    
+    function modifyExpense($idRecordToModify)
     {
-        $balance = new Budget($this->dbo);
-        $balance->showBalance($peroid);
+        $modifyExpense = new Budget($this->dbo);
+        return $modifyExpense->modifyExpense($idRecordToModify);  
     }
 
+
+    function addIncomeCategoryName($categoryName)
+    {
+        $addIncomeCategoryName = new Budget($this->dbo);
+        return $addIncomeCategoryName->addIncomeCategoryName($categoryName);
+    }
+
+    function addExpenseCategoryName($categoryName)
+    {
+        $addExpenseCategoryName = new Budget($this->dbo);
+        return $addExpenseCategoryName->addExpenseCategoryName($categoryName);
+    }
+
+    function addPaymentMethod($paymentMethodName)
+    {
+        $paymentMethod = new Budget($this->dbo);
+        return $paymentMethod->addPaymentMethod($paymentMethodName);
+    }
+
+
+
+    
+
+    function showBalance($peroid, $startDate, $lastDate)
+    {
+        $balance = new Budget($this->dbo);
+        $balance->showBalance($peroid, $startDate, $lastDate);
+    }
+
+
+
+
+
+    function selectAllIncomes()
+    {
+        $allIncomes = new Budget($this->dbo);
+        return $allIncomes->selectAllIncomes();  
+    }
+
+    function selectAllExpenses()
+    {
+        $allExpenses = new Budget($this->dbo);
+        return $allExpenses->selectAllExpenses();  
+    }
+
+    function selectAllPaymentMethods()
+    {
+        $allPaymentMethods = new Budget($this->dbo);
+        return $allPaymentMethods->selectAllPaymentMethods();
+    }
+
+
+
+    function selectSingleRowOfIncome($idRecordToModify)
+    {
+        $singleRow = new Budget($this->dbo);
+        return $singleRow->selectSingleRowOfIncome($idRecordToModify);  
+    }
+
+    function selectSingleRowOfExpense($idRecordToModify)
+    {
+        $singleRow = new Budget($this->dbo);
+        return $singleRow->selectSingleRowOfExpense($idRecordToModify);  
+    }
+
+
+
+    function selectSinglePaymentMethod($idCategoryToModify)
+    {
+        $singleRow = new Budget($this->dbo);
+        return $singleRow->selectSinglePaymentMethod($idCategoryToModify);       
+    }
+
+    function selectSingleIncomeCategoryName($idCategoryToModify)
+    {
+        $singleNameOfIncome = new Budget($this->dbo);
+        return $singleNameOfIncome->selectSingleIncomeCategoryName($idCategoryToModify);
+    }
+
+    function selectSingleExpenseCategoryName($idCategoryToModify)
+    {
+        $singleNameOfExpense = new Budget($this->dbo);
+        return $singleNameOfExpense->selectSingleExpenseCategoryName($idCategoryToModify);
+    }
+
+
+
+
+
+
+
+    function dropExpenseCategory($dropExpenseCategory)
+    {
+        $balance = new Budget($this->dbo);
+        return $balance->dropExpenseCategory($dropExpenseCategory);
+    }
+
+    function dropIncomeCategory($dropIncomeCategory)
+    {
+        $balance = new Budget($this->dbo);
+        return $balance->dropIncomeCategory($dropIncomeCategory);
+    }
+
+    function dropPaymentMethod($dropPaymentMethod)
+    {
+        $paymentMethod = new Budget($this->dbo);
+        return $paymentMethod->dropPaymentMethod($dropPaymentMethod);
+    }
+
+    function dropSingleRecordOfIncome($singleRecordId)
+    {
+        $singleRecord = new Budget($this->dbo);
+        return $singleRecord->dropSingleRecordOfIncome($singleRecordId);
+    }
+
+    function dropSingleRecordOfExpense($singleRecordId)
+    {
+        $singleRecord = new Budget($this->dbo);
+        return $singleRecord->dropSingleRecordOfExpense($singleRecordId);
+    }
+
+
+
+
+
+    function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)
+    {
+         
+         $change = new Budget($this->dbo);
+         return $change->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName);
+    }
+
+    function changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName)
+    {
+         
+         $change = new Budget($this->dbo);
+         return $change->changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName);
+    }
+
+    function changePaymentMethod($categoryNameToModify, $newPaymentMethod)
+    {
+         
+         $change = new Budget($this->dbo);
+         return $change->changePaymentMethod($categoryNameToModify, $newPaymentMethod);
+    }
 }

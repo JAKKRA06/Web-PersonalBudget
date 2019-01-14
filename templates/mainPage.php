@@ -3,8 +3,8 @@
     <div class="col-sm-12">
         <section class="logger">
             <?php
-                $str = $_SESSION['loginUser'];
-                $str = strtoupper($str);
+                $user = $PB->getActualUser();
+                $str = strtoupper($user);
                 echo "Witaj: ".'<i>'.$str.'</i>';
             ?>
         </section>

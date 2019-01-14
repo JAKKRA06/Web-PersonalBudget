@@ -48,37 +48,41 @@
             <form method="post" action="index.php?action=addIncome">
 
                 <article class="row">
-                    <label class="col-sm-4">Kwota</label>
-                        <div class="col-sm-8">
+                    <label class="col-sm-4 label">Kwota</label>
+                        <div class="col-sm-8 label">
                             <input type="text" name="income_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'">                                  
                         </div>
                 </article>
 
                 <article class="row">
-                    <label class="col-sm-4">Data</label>
-                        <div class="col-sm-8">
+                    <label class="col-sm-4 label">Data</label>
+                        <div class="col-sm-8 label">
                             <input type="date" id="currentDate" name="income_date" class="form-control">    
                         </div>
                 </article>
 
                 <article class="row">
-                    <label class="col-sm-4">Komentarz</label>
-                        <div class="col-sm-8">
+                    <label class="col-sm-4 label">Komentarz</label>
+                        <div class="col-sm-8 label">
                       <input type="text" name="income_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'"> 
                     </div>
                 </article>
+
                 <article class="row">
-                  <label class="col-sm-4">Kategoria</label>
-                    <div class="col-sm-8">
+                  <label class="col-sm-4 label">Kategoria</label>
+                    <div class="col-sm-8 label">
                       <select class="custom-select" name="income_select">  
                         <option selected >Rozwiń</option>
-                        <option value="Wynagrodzenie" type="text" id="kategoria">Wynagrodzenie</option>
-                        <option value="Odsetki bankowe">Odsetki bankowe</option>
-                        <option value="Allegro">Allegro</option>
-                        <option value="Inne">Inne</option>
+                        <?php 
+                            $allIncomes = $PB->selectAllIncomes();
+                            while ($row = $allIncomes->fetch_assoc()) :
+                        ?>
+                        <option value="<?=$row['name']?>" type="text" id="kategoria"><?=$row['name']?></option>
+                        <?php endwhile;?>
                       </select> 
                     </div>
                 </article>
+                
                 <article class="row">
                     <div class="col-12">
                         <button class="btn btn-lg btn-success add" type="submit"><i class="icon-plus"></i></button>

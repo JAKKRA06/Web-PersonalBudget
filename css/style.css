@@ -84,9 +84,8 @@ header a:hover
     background-color : lightyellow;
     border           : 2px solid #000;
     font-size        : 20px;
-    padding          : 0 10px;
-	margin-top       : 5px;
-	margin-bottom    : 5px;
+    padding          : 0 10px;   
+    margin-top       : 3px;
 }
 
 .custom-select:focus
@@ -111,6 +110,8 @@ input[type=text]:focus,
 input[type=password]:focus
 {
 	background-color : lightyellow;
+    outline          : none;
+    text-decoration  : none; 
 }
 
 .logger
@@ -296,7 +297,6 @@ input[type=password]:focus
 {
     float      : left;
     font-size  : 22px;
-    margin-top : 10px;
 }
 
 .title
@@ -390,17 +390,19 @@ input[type=password]:focus
     padding    : 5px;
 }
 
+a:hover
+{
+    text-decoration: none;
+}
 td a
 {
-    color   : green;
-    display : block;
+    color   : #000;
+    display : inline;
 }
 
 td a:hover
 {
-    color           : red;
     text-decoration : none;
-    
 }
 
 td p
@@ -458,6 +460,14 @@ td p
     margin-bottom : 10px;	
 }
 
+.infoStatement
+{
+    text-align    : center;
+    color         : #0066cc;
+    font-size     : 20px;
+    margin-bottom : 10px;   
+}
+
 .expense_success
 {
     text-align    : center;
@@ -480,7 +490,7 @@ td p
 .category_list_name_income
 {
 	text-align : center;
-	font-size  : 20px;
+	font-size  : 18px;
 	color      : green;
 }
 
@@ -492,7 +502,7 @@ td p
 .category_list_name_expense
 {
 	text-align : center;
-	font-size  : 20px;
+	font-size  : 18px;
 	color      : red;
 }
 
@@ -502,11 +512,16 @@ td p
 	cursor          : pointer;
 }
 
+.category_list
+{
+    font-size: 16px;
+    color: #000;
+}
+
 .icon-pencil,
 .icon-trash
 {
-	cursor     : pointer;
-	text-align : right;
+    display: inline;
 }
 
 .saving
@@ -582,17 +597,21 @@ border: 1px solid #000;}
 	
 }
 
-.editionUser
-{
-	margin        : 30px;
-	border        : 1px solid #000;
-	border-radius : 20px;
-	padding       : 40px 15px;
-}
 #editionButtons
 {
 	width     : 220px;
-	font-size :15px;
+	font-size : 15px;
+}
+
+.editionUser
+{
+    border-bottom: 1px solid #000;
+    margin-bottom: 21px;
+}
+
+.modalInputText
+{
+    width: 220px;
 }
 
 .modalInputText:focus
@@ -610,6 +629,7 @@ border: 1px solid #000;}
 	text-align  : left;
 	font-weight : 400;
 }
+
 .tableResultIncome
 {
 
@@ -618,13 +638,56 @@ border: 1px solid #000;}
     width           : 250px;
     border-collapse : separate;
     margin-top      : 10px;
+    margin-bottom   : 10px;
+    margin-left     : auto;
+    margin-right    : auto;
 }
+
 .tableResultExpense
 {
-
     border          : 2px solid red;
     border-radius   : 20px;
     width           : 250px;
     border-collapse : separate;
     margin-top      : 10px;
+    margin-left     : auto;
+    margin-right    : auto;
+}
+
+.modal-header
+{
+    border-bottom: solid 1px #000;
+}
+
+.label
+{
+    text-align    : left;
+    padding       : 7px 15px;  
+}
+
+.labelEdit
+{
+    text-align    : left;
+    padding       : 7px 15px;  
+}
+
+.editSubmit
+{
+    margin-top: 7px;
+}
+
+.modal-backdrop
+{
+    z-index : -10;
+}
+
+.button-modify
+{
+    width: 100px;
+    border-radius: 20px;
+}
+
+.form-control:focus
+{
+    text-decoration: none;
 }

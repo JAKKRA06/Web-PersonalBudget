@@ -48,71 +48,64 @@
                 ?>
             <form method="post" action="index.php?action=addExpense">
                              
-            <article class=" row">
-                <label for="kwota" class="col-sm-4 col-form-label">Kwota</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="expense_amount" class="form-control"  id="kwota" placeholder="kwota">                     
-                    </div>
-            </article>
-                              
-            <article class=" row">
-                <label for="currentDateEx" class="col-sm-4 col-form-label">Data</label>
-                    <div class="col-sm-8">
-                        <input type="date" name="expense_date" id="currentDateEx" class="form-control">
-                    </div>
-            </article>
-                              
-            <article class="row">
-                <label class="col-sm-6">Sposób płatności</label>
-                    <div class="col-sm-6">
-                        <select class="custom-select" name="expense_payment_method">
-                            <option selected >Rozwiń</option>
-                            <option value="Gotowka">Gotówka</option>
-                            <option value="Karta platnicza">Karta płatnicza</option>
-                            <option value="Karta kredytowa">Karta kredytowa</option>
-                        </select>
-
-                    </div>
-            </article> 
-                              
-            <article class="row">
-                <label class="col-sm-4">Kategoria</label>
-                    <div class="col-sm-8">
-                        <select class="custom-select" name="expense_category_select">
-                            <option selected >Rozwiń</option>
-                            <option value="Transport">Transport</option>
-                            <option value="Ksiazki">Książki</option>
-                            <option value="Jedzenie">Jedzenie</option>
-                            <option value="Mieszkanie">Mieszkanie</option>
-                            <option value="Telekomunikacja">Telekomunikacja</option>
-                            <option value="Higiena">Higiena</option>
-                            <option value="Ubranie">Ubranie</option>
-                            <option value="Opieka zdrowotna">Opieka zdrowotna</option>
-                            <option value="Dzieci">Dzieci</option>
-                            <option value="Rozrywka">Rozrywka</option>
-                            <option value="Wycieczka">Wycieczka</option>
-                            <option value="Oszczednosci">Oszczędności</option>
-                            <option value="Na zlota jesien, czyli emeryture">Na złotą jesień, czyli emeryturę</option>
-                            <option value="Splta dlugow">Spłta długów</option>
-                            <option value="Darowizna">Darowizna</option>
-                            <option value="Inne wydatki">Inne wydatki</option>
-                        </select>
-                    </div>
+                <article class="row">
+                    <label class="col-sm-4 label">Kwota</label>
+                        <div class="col-sm-8 label">
+                            <input type="text" name="expense_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'">
+                        </div>
                 </article>
 
                 <article class="row">
-                   <label class="col-sm-4">Komentarz</label>
-                        <div class="col-sm-8">
-                        <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'">
+                    <label class="col-sm-4 label">Data</label>
+                        <div class="col-sm-8 label">
+                            <input type="date" id="currentDateEx" name="expense_date" class="form-control">    
                         </div>
+                </article>
+
+                <article class="row">
+                    <label class="col-sm-4 label">Kategoria</label>
+                        <div class="col-sm-8 label">
+                            <select class="custom-select" name="expense_category_select"> 
+                                <option selected >Rozwiń</option>
+                        <?php 
+                            $allExpenses = $PB->selectAllExpenses();
+                            while ($row = $allExpenses->fetch_assoc()) :
+                        ?>
+                        <option value="<?=$row['name']?>" type="text" id="kategoria"><?=$row['name']?></option>
+                        <?php endwhile;?> 
+                            </select> 
+                        </div>
+                </article>
+                              
+                <article class="row">
+                    <label class="col-sm-6 label">Sposób płatności</label>
+                        <div class="col-sm-6 label">
+                            <select class="custom-select" name="expense_payment_method">
+                                <option selected >Rozwiń</option>
+                        <?php 
+                            $allPaymentMethods = $PB->selectAllPaymentMethods();
+                            while ($row = $allPaymentMethods->fetch_assoc()) :
+                        ?>
+                                <option value="<?=$row['name']?>" type="text" id="kategoria"><?=$row['name']?></option>
+                        <?php endwhile;?>                            
+                            </select>
+                        </div>
+                </article> 
+
+                <article class="row">
+                    <label class="col-sm-4 label">Komentarz</label>
+                        <div class="col-sm-8 label">
+                      <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'"> 
+                    </div>
                 </article>
 
                 <article class="row" >
                     <div class="col-12">
                         <button type="submit" class="btn btn-lg btn-danger add"><i class="icon-plus"></i></button>
                     </div>
-                </article>  
-                </form>
+                </article>
+                                
+            </form>
         </article>
     </article>
 </div>

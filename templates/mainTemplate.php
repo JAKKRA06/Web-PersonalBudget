@@ -84,35 +84,57 @@
                   include 'templates/expenseForm.php';
                   break;
                 case 'showBalance' :
-                  $peroid = 'currentMonth';
-                    if(isset($_GET['peroid'])) {
-                      $peroid = $_GET['peroid'];
+                  $peroid    = 'currentMonth';
+                  if(isset($_GET['peroid'])) {
+                     $peroid = $_GET['peroid'];
+                  }
+                  if(isset($_POST['startDate'])) {
+                     $startDate = $_POST['startDate'];
+                  } else if(isset($_GET['startDate'])) {
+                     $startDate = $_GET['startDate'];
+                  } else {
+                     $startDate = '';
                     }
+                  if(isset($_POST['lastDate'])) {
+                     $lastDate = $_POST['lastDate'];
+                  } else if(isset($_GET['lastDate'])) {
+                     $lastDate  = $_GET['lastDate'];
+                  } else {
+                    $lastDate = '';
+                  }
                   switch ($peroid) {
                     case 'currentMonth' :
-                      $PB->showBalance($peroid);
+                      $PB->showBalance($peroid, $startDate, $lastDate);
                       break;
                     case 'previousMonth' :
-                      $PB->showBalance($peroid);
+                      $PB->showBalance($peroid, $startDate, $lastDate);
                       break;
                     case 'currentYear' :
-                      $PB->showBalance($peroid);
+                      $PB->showBalance($peroid, $startDate, $lastDate);
                       break;
                     case 'nonStandard' :
-                      $PB->showBalance($peroid);
+                      $PB->showBalance($peroid, $startDate, $lastDate);
                       break;
                     }
                   break;
                 case 'showSettings' :
+                  $allIncomes        = $PB->selectAllIncomes();
+                  $allExpenses       = $PB->selectAllExpenses();
+                  $allPaymentMethods = $PB->selectAllPaymentMethods();
                   include 'templates/settingsForm.php';
                   break;
                 case 'showRegistrationSuccess' :
                   include 'templates/welcome.php';
                   break;
+                case 'showModifyIncomeForm' :
+                  include 'templates/modifyIncomeForm.php';
+                  break;
+                case 'showModifyExpenseForm' :
+                  include 'templates/modifyExpenseForm.php';
+                  break;                
                 case 'showStart' :
                 default :
-                  if (!isset($_SESSION['loginUser'])) {
-                      include 'templates/startTemplate.php'; }
+                      include 'templates/startTemplate.php';
               endswitch;
             ?>
 

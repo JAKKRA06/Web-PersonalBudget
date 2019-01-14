@@ -10,4 +10,6 @@
   define('PASSWORD_DO_NOT_MATCH', 7);
   define('COMMENT_TO_LONG', 8);
   define('INVALID_FORMAT', 9);
+  define('RECORD_NOT_FOUND', 10);
+  define('CATEGORY_ALREADY_EXIST', 11);
 ?>
