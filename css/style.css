@@ -28,11 +28,12 @@ header a
 
 header a:hover
 {
-	color            : #fff;
+	color            : #0066cc;
+    background-color : #fff;
 	text-decoration  : none;
-	background-color : white;
 	border-radius    : 20px;
-	opacity          : 0.5;
+    border           : 1px solid #000;  
+	opacity          : 0.9;
 	padding          : 0 10px;
 }
 .description
@@ -301,7 +302,7 @@ input[type=password]:focus
 
 .title
 {
-    margin-bottom : 10px;
+    margin-bottom : 30px;
     font-size     : 24px;
     font-weight   : 600;
 }
@@ -571,7 +572,7 @@ border-radius: 20px;}
 border-radius: 20px;
 border: 1px solid #000;}
 
-.dropdown:hover .dropbtn {background-color: #0066cc;}
+.dropdown:hover .dropbtn {background-color: #0066bb;}
 
 #comentary p:hover
 {

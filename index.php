@@ -142,7 +142,6 @@ try{
           $PB->setMessage('Błąd serwera.');
           break;
       }
-
       header('Location: index.php?action=showBalance&peroid='.$peroid.'&startDate='.$startDate.'&lastDate='.$lastDate.'');
       break;
     case 'dropIncomeCategory' :
@@ -362,7 +361,26 @@ try{
         }
       header('Location: index.php?action=showSettings');
       break;
-    default :
+    case 'deleteProfile' :
+      if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+      }
+      switch ($PB->deleteProfile()) {
+        case ACTION_OK :
+          $PB->setMessage('Konto zostało usunięte ! Następuje wylogowanie... ');
+          $PB->logOut();
+          header('Location: index.php?action=showStart');
+          break;
+        case ACTION_FAILED :
+          $PB->setMessage('Nie udało się usunąć konta. Skontaktuj się z administratorem strony !');
+          break; 
+        case SERVER_ERROR :
+        default :
+          $PB->setMessage('Bład serwera !');
+      }
+      header('Location: index.php?action=showSettings');
+      break;
+      default :
       include 'templates/mainTemplate.php';
   }
 }

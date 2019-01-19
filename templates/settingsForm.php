@@ -71,6 +71,13 @@
                             </div>
                     </article>
                 </form>
+<?php
+ /*               <div class="col-md-12">
+                	<article class="edition">
+                		<button type="button" id="editionButtons" class="btn btn-danger"  data-toggle="modal" data-target="#modalDeleteProfile">Usuń profil</button>
+                	</article>
+                </div>   */ 
+?>
             </article>
 
             <div class="row">
@@ -101,13 +108,29 @@
                         <button type="button" id="editionButtons" class="btn btn-primary"  data-toggle="modal" data-target="#modalChangePayment">Zmień nazwę metody płatności</button>
                     </article>
                 </div>
+
             </div>
 
         </article>
     </article>	
 </div> 
 
-
+<div class="modal fade" id="modalDeleteProfile" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="myModalLabel">Potwierdź</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        <div class="modal-body">
+            <p style="text-align: left;">Czy na pewno chcesz usunąć profil ? <br> Naciskając potwierdź 
+            zostaniesz wylogowany i wszystkie Twoje dane zostaną <span style="text-decoration: underline; color: red" >usunięte </span>!</p>
+            <button class="btn btn-danger" data-dismiss="modal">Odrzuć</button>
+            <a href="index.php?action=deleteProfile"><button class="btn btn-primary" type="submit">Potwierdź</button></a>
+        </div>
+        </div>
+    </div>
+</div>
 
 
 				<!-- Modal Expenses -->

@@ -105,7 +105,7 @@
                             <td id="tableIncome">
 <?php
 if ($result = $this->dbo->query($queryIncome)) :
-  while ($row = $result->fetch_assoc()) :
+    while ($row = $result->fetch_assoc()) :
           
         $incomeCategoryId = $row['income_category_assigned_to_user_id'];
         $sumIncome        = $row['SUM(amount)'];
@@ -126,38 +126,20 @@ if ($result = $this->dbo->query($queryIncome)) :
                     . " income_category_assigned_to_user_id = '$incomeCategoryId'"
                     . " ORDER BY amount DESC";
 
-            $result2 = $this->dbo->query($query2);
+            $result2 =  $this->dbo->query($query2);
 
             while ($row2 = $result2->fetch_assoc()) :
-                   $incomeId      = $row2['id'];
-                   $incomeDate    = $row2['date_of_income'];
-                   $incomeAmount  = $row2['amount'];
-                   $incomeComment = $row2['income_comment'];
+                  $incomeId      = $row2['id'];
+                  $incomeDate    = $row2['date_of_income'];
+                  $incomeAmount  = $row2['amount'];
+                  $incomeComment = $row2['income_comment'];
 
-                   echo '<div class="category_list"><i class="icon-bank"></i>'
-                        . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
-                        .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=nonStandard&startDate='.$startDate.'&lastDate='.$lastDate.'><i class="icon-pencil"></i></a>'
-                        //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                        .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=nonStandard&startDate='.$startDate.'&lastDate='.$lastDate.'"><i class="icon-trash"></i></a></div>'.'<br/>';
-?>
+echo '<div class="category_list"><i class="icon-bank"></i>'
+     . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
+     .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=nonStandard><i class="icon-pencil"></i></a>'
+     .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=nonStandard"><i class="icon-trash"></i></a></div>'.'<br/>';
 
-<div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="myModalLabel">Potwierdź</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        <div class="modal-body">
-            <p style="text-align: left;">Czy na pewno chcesz usunąć wybrany rekord ?</p>
-            <button class="btn btn-danger" data-dismiss="modal">Odrzuć</button>
-            <a href="index.php?action=dropSingleRecordOfIncome&incomeId=<?=$incomeId?>"><button class="btn btn-primary" type="submit">Potwierdź</button></a>
-        </div>
-        </div>
-    </div>
-</div>
-
-<?php endwhile; endif; endwhile; endif;?>             
+endwhile; endif; endwhile; endif;?>             
                             </td>
                         </tr>
                     </table>
@@ -172,14 +154,14 @@ if ($result = $this->dbo->query($queryIncome)) :
                             <td id="tableExpense">
 <?php
 if ($result = $this->dbo->query($queryExpense)) :
-  while ($row = $result->fetch_assoc()) :
+    while ($row = $result->fetch_assoc()) :
           
         $expenseCategoryId = $row['expense_category_assigned_to_user_id'];
         $sumExpense        = $row['SUM(amount)'];
 
         $query1  = "SELECT * FROM expenses_category_assigned_to_users "
                  . " WHERE id = '$expenseCategoryId'";
-    
+        
         $result1 = $this->dbo->query($query1);
         $row1    = $result1->fetch_assoc();
         $categoryName = $row1['name'];
@@ -194,40 +176,20 @@ if ($result = $this->dbo->query($queryExpense)) :
                     . " AND '$lastDate' AND user_id = '$userId' AND "
                     . " expense_category_assigned_to_user_id = '$expenseCategoryId'"
                     . " ORDER BY amount DESC";
-            
-            $result2  =  $this->dbo->query($query2);
+            $result2   =  $this->dbo->query($query2);
 
             while ($row2 = $result2->fetch_assoc()) :
-                  $expenseId      = $row2['id'];                  
+                  $expenseId      = $row2['id'];                                    
                   $expenseDate    = $row2['date_of_expense'];
                   $expenseAmount  = $row2['amount'];
                   $expenseComment = $row2['expense_comment'];
                 
-                  echo '<div class="category_list"><i class="icon-bank"></i>'
-                       . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
-                       .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=nonStandard&startDate='.$startDate.'&lastDate='.$lastDate.'><i class="icon-pencil"></i></a>'
-                     //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                       .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=nonStandard&startDate='.$startDate.'&lastDate='.$lastDate.'"><i class="icon-trash"></i></a></div>'.'<br/>';
-?>
+echo '<div class="category_list"><i class="icon-bank"></i>'
+     . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
+     .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=nonStandard><i class="icon-pencil"></i></a>'
+     .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=nonStandard"><i class="icon-trash"></i></a></div>'.'<br/>';
 
-<div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="myModalLabel">Potwierdź</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        <div class="modal-body">
-
-            <p style="text-align: left;">Czy na pewno chcesz usunąć wybrany rekord ?</p>
-            <button class="btn btn-danger" data-dismiss="modal">Odrzuć</button>
-            <a href="index.php?action=dropSingleRecord&incomeId=<?=$incomeId?>"><button class="btn btn-primary" type="submit">Potwierdź</button></a>
-        </div>
-        </div>
-    </div>
-</div>
-
-<?php endwhile; endif; endwhile; endif;?>                 
+ endwhile; endif; endwhile; endif;?>                
                             </td>
                         </tr>
                     </table>

@@ -317,4 +317,12 @@ class User extends MyDB
          $change = new Budget($this->dbo);
          return $change->changePaymentMethod($categoryNameToModify, $newPaymentMethod);
     }
+
+
+
+    function deleteProfile()
+    {
+        $profile = new Budget($this->dbo);
+        return $profile->deleteProfile();
+    }
 }

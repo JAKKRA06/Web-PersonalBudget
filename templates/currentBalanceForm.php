@@ -20,13 +20,13 @@
 </div>
 
 <div class="row">
-      <div class="col-sm-12">
+    <div class="col-sm-12">
         <section class="logger">
             <?php
                 $str = $_SESSION['loginUser'];
                 $str = strtoupper($str);
                      echo "Witaj: ".'<i>'.$str.'</i>';
-            ?>
+            ?>                    
         </section>
     </div>
               
@@ -46,7 +46,7 @@
                 <a href="index.php?action=showMain">Strona główna</a>
                 <a href="index.php?action=showIncomeForm">Dodaj przychód</a>
                 <a href="index.php?action=showExpenseForm">Dodaj wydatek</a>
-                <a href="index.php?action=showBalance" id = "balanceTab" class="active">Przeglądaj bilans</a>
+                <a href="index.php?action=showBalance" id ="balanceTab" class="active">Przeglądaj bilans</a>
                 <a href="index.php?action=showSettings">Ustawienia</a>
                 <?php
                   echo '<a href="index.php?action=logout">Wyloguj</a>';
@@ -125,30 +125,12 @@ if ($result = $this->dbo->query($queryIncome)) :
 				  $incomeAmount  = $row2['amount'];
 				  $incomeComment = $row2['income_comment'];
 
-                   echo '<div class="category_list"><i class="icon-bank"></i>'
-				        . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
-				        .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
-                        //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                        .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
-?>
+echo '<div class="category_list"><i class="icon-bank"></i>'
+	 . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
+	 .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
+     .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
 
-<div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="myModalLabel">Potwierdź</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        <div class="modal-body">
-            <p style="text-align: left;">Czy na pewno chcesz usunąć wybrany rekord ?</p>
-            <button class="btn btn-danger" data-dismiss="modal">Odrzuć</button>
-            <a href="index.php?action=dropSingleRecordOfIncome&incomeId=<?=$incomeId?>"><button class="btn btn-primary" type="submit">Potwierdź</button></a>
-        </div>
-        </div>
-    </div>
-</div>
-
-<?php endwhile; endif; endwhile; endif;?>             
+endwhile; endif; endwhile; endif;?>             
                             </td>
                         </tr>
                     </table>
@@ -193,31 +175,12 @@ if ($result = $this->dbo->query($queryExpense)) :
 				  $expenseAmount  = $row2['amount'];
 				  $expenseComment = $row2['expense_comment'];
                 
-                  echo '<div class="category_list"><i class="icon-bank"></i>'
-                       . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
-                       .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
-                     //.'<a data-toggle=modal href="#confirmRecord"><i class="icon-trash"></i></a></div>'.'<br/>';
-                       .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
-?>
+echo '<div class="category_list"><i class="icon-bank"></i>'
+     . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
+     .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
+     .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
 
-<div class="modal fade" id="confirmRecord" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="myModalLabel">Potwierdź</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-        <div class="modal-body">
-
-            <p style="text-align: left;">Czy na pewno chcesz usunąć wybrany rekord ?</p>
-            <button class="btn btn-danger" data-dismiss="modal">Odrzuć</button>
-            <a href="index.php?action=dropSingleRecord&incomeId=<?=$incomeId?>"><button class="btn btn-primary" type="submit">Potwierdź</button></a>
-        </div>
-        </div>
-    </div>
-</div>
-
-<?php endwhile; endif; endwhile; endif;?>                 
+ endwhile; endif; endwhile; endif;?>                 
                             </td>
                         </tr>
                     </table>

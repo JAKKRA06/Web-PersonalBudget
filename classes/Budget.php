@@ -620,10 +620,10 @@ class Budget
         if (!$this->dbo) {
             return SERVER_ERROR;
         }
-
         $userId = $_SESSION['userId'];
         
-        $query  = "SELECT id FROM incomes_category_assigned_to_users WHERE name = '$dropIncomeCategory'";
+        $query  = "SELECT id FROM incomes_category_assigned_to_users WHERE name = '$dropIncomeCategory'"
+                . " AND user_id = '$userId'";
 
         $result = $this->dbo->query($query);
         $row    = $result->fetch_assoc();
@@ -633,13 +633,19 @@ class Budget
                . " AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
-        	if ($result->num_rows == 0) {
-                $query = "INSERT INTO incomes_category_assigned_to_users  VALUES"
-                       . " (NULL, $userId, 'Pozostale')";
-                $this->dbo->query($query);
+        	if ($result->num_rows == 0) {            
+                $query1  = "INSERT INTO incomes_category_assigned_to_users  VALUES"
+                        . " (NULL, $userId, 'Pozostale')";
+                if($this->dbo->query($query1)) {
+                   $query2 = "SELECT id FROM incomes_category_assigned_to_users WHERE name = 'Pozostale'"
+                           . " AND user_id = '$userId'";
+                   $result = $this->dbo->query($query2);               
+        		   $row                 = $result->fetch_assoc();
+                   $idCategoryPozostale = $row['id'];       
+                }
             } else {
-                    $row                 = $result->fetch_assoc();
-                    $idCategoryPozostale = $row['id'];  
+                $row                 = $result->fetch_assoc();
+                $idCategoryPozostale = $row['id'];  
             }
         }
 
@@ -684,7 +690,9 @@ class Budget
 
         $userId = $_SESSION['userId'];
         
-        $query  = "SELECT id FROM expenses_category_assigned_to_users WHERE name = '$dropExpenseCategory'";
+        $query  = "SELECT id FROM expenses_category_assigned_to_users WHERE name = '$dropExpenseCategory'"
+                . " AND user_id = '$userId'";
+
 
         $result = $this->dbo->query($query);
         $row = $result->fetch_assoc();
@@ -694,13 +702,19 @@ class Budget
                . " AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
-        	if ($result->num_rows == 0) {
-                $query = "INSERT INTO expenses_category_assigned_to_users  VALUES"
-                       . " (NULL, $userId, 'Pozostale')";
-                $this->dbo->query($query);
+        	if ($result->num_rows == 0) {            
+                $query1  = "INSERT INTO expenses_category_assigned_to_users  VALUES"
+                        . " (NULL, $userId, 'Pozostale')";
+                if($this->dbo->query($query1)) {
+                   $query2 = "SELECT id FROM expenses_category_assigned_to_users WHERE name = 'Pozostale'"
+                           . " AND user_id = '$userId'";
+                   $result = $this->dbo->query($query2);               
+        		   $row                 = $result->fetch_assoc();
+                   $idCategoryPozostale = $row['id'];       
+                }
             } else {
-                    $row                 = $result->fetch_assoc();
-                    $idCategoryPozostale = $row['id'];  
+                $row                 = $result->fetch_assoc();
+                $idCategoryPozostale = $row['id'];  
             }
         }
 
@@ -897,11 +911,11 @@ class Budget
     	if (!$this->dbo) {
     		return SERVER_ERROR;
     	}
-
+        $userId = $_SESSION['userId'];
     	$newCategoryName = ucwords(strtolower($categoryName));
 
         $query = "SELECT name FROM  incomes_category_assigned_to_users"
-               . " WHERE name = '$newCategoryName'";
+               . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
         if($result = $this->dbo->query($query)) {
         	if($result->num_rows > 0) {
         	   return CATEGORY_ALREADY_EXIST;
@@ -925,10 +939,10 @@ class Budget
     	if (!$this->dbo) {
     		return SERVER_ERROR;
     	}
-    	
+        $userId = $_SESSION['userId'];
     	$newCategoryName = ucwords(strtolower($categoryName));
         $query = "SELECT name FROM  expenses_category_assigned_to_users"
-               . " WHERE name = '$newCategoryName'";
+               . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
         if($result = $this->dbo->query($query)) {
         	if($result->num_rows > 0) {
         	   return CATEGORY_ALREADY_EXIST;
@@ -964,8 +978,6 @@ class Budget
         	   return CATEGORY_ALREADY_EXIST;
         	}
         }
-
-        $userId = $_SESSION['userId'];
 
     	$query = "INSERT INTO payment_methods_assigned_to_users VALUES"
     	       . " (NULL, '$userId', '$newCategoryName')";
@@ -1056,6 +1068,69 @@ class Budget
         } else {
         	return ACTION_FAILED;
         }
+    }
+
+
+
+    function deleteProfile()
+    {
+       	if (!$this->dbo) {
+    		return SERVER_ERROR;
+    	}
+
+        $allOk = false;
+    	$userId = $_SESSION['userId'];
+
+
+    	$query = "DELETE FROM expenses WHERE user_id = '$userId'";
+
+    	if($this->dbo->query($query)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+    	$query1 = "DELETE FROM incomes WHERE user_id = '$userId'";   
+    	if($this->dbo->query($query1)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+    	$query2 = "DELETE FROM expenses_category_assigned_to_users WHERE user_id = '$userId'";   
+    	if($this->dbo->query($query2)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+    	$query3 = "DELETE FROM incomes_category_assigned_to_users WHERE user_id = '$userId'";   
+    	if($this->dbo->query($query3)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+    	$query4 = "DELETE FROM payment_methods_assigned_to_users WHERE user_id = '$userId'";   
+    	if($this->dbo->query($query4)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+    	$query5 = "DELETE FROM users WHERE id = '$userId'";   
+    	if($this->dbo->query($query5)) {
+    	   $allOk = true;
+        } else {
+        	$allOk = false;
+        }
+
+        if($allOk == true) {
+           return ACTION_OK;
+
+        } else {
+        	return ACTION_FAILED;
+        }	
     }
 }
 ?>
