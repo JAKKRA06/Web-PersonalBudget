@@ -927,17 +927,17 @@ class Budget
     		return SERVER_ERROR;
     	}
         $userId = $_SESSION['userId'];
+
     	$newCategoryName = ucwords(strtolower($categoryName));
 
         $query = "SELECT name FROM  incomes_category_assigned_to_users"
                . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
+               
         if($result = $this->dbo->query($query)) {
         	if($result->num_rows > 0) {
         	   return CATEGORY_ALREADY_EXIST;
         	}
         }
-
-        $userId = $_SESSION['userId'];
 
     	$query = "INSERT INTO incomes_category_assigned_to_users VALUES"
     	       . " (NULL, '$userId', '$newCategoryName')";
@@ -955,7 +955,9 @@ class Budget
     		return SERVER_ERROR;
     	}
         $userId = $_SESSION['userId'];
+
     	$newCategoryName = ucwords(strtolower($categoryName));
+
         $query = "SELECT name FROM  expenses_category_assigned_to_users"
                . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
         if($result = $this->dbo->query($query)) {
@@ -963,8 +965,6 @@ class Budget
         	   return CATEGORY_ALREADY_EXIST;
         	}
         }
-
-        $userId = $_SESSION['userId'];
 
     	$query = "INSERT INTO expenses_category_assigned_to_users VALUES"
     	       . " (NULL, '$userId', '$newCategoryName')";
@@ -1012,9 +1012,11 @@ class Budget
        	if (!$this->dbo) {
     		return SERVER_ERROR;
     	}
-        
+
+        $userId = $_SESSION['userId'];
+
         $query = "SELECT id FROM expenses_category_assigned_to_users WHERE"
-               . " name = '$categoryNameToModify'";
+               . " name = '$categoryNameToModify' AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
             $row    = $result->fetch_assoc();
@@ -1024,8 +1026,9 @@ class Budget
         $newCategoryName = ucwords(strtolower($newExpenseCategoryName));
 
         $query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName'"
-               . " WHERE expenses_category_assigned_to_users.id = '$idCategoryNameToModify'";
-        
+               . " WHERE expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
+               . " AND user_id = '$userId'"
+          echo $newExpenseCategoryName;exit();      
         if ($this->dbo->query($query)) {
         	return ACTION_OK;
         } else {
@@ -1039,8 +1042,10 @@ class Budget
     		return SERVER_ERROR;
     	}
 
+    	$userId = $_SESSION['userId'];
+
         $query = "SELECT id FROM incomes_category_assigned_to_users WHERE"
-               . " name = '$categoryNameToModify'";
+               . " name = '$categoryNameToModify' AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
             $row    = $result->fetch_assoc();
@@ -1050,7 +1055,8 @@ class Budget
         $newCategoryName = ucwords(strtolower($newIncomeCategoryName));
 
         $query = "UPDATE incomes_category_assigned_to_users SET name = '$newCategoryName'"
-               . " WHERE incomes_category_assigned_to_users.id = '$idCategoryNameToModify'";
+               . " WHERE incomes_category_assigned_to_users.id = '$idCategoryNameToModify'"
+               . " AND user_id = '$userId'";
         
         if ($this->dbo->query($query)) {
         	return ACTION_OK;
@@ -1064,9 +1070,10 @@ class Budget
        	if (!$this->dbo) {
     		return SERVER_ERROR;
     	}
-        
+    	$userId = $_SESSION['userId'];
+
         $query = "SELECT id FROM payment_methods_assigned_to_users WHERE"
-               . " name = '$categoryNameToModify'";
+               . " name = '$categoryNameToModify' AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
             $row    = $result->fetch_assoc();
@@ -1076,7 +1083,8 @@ class Budget
     	$newCategoryName = ucwords(strtolower($newPaymentMethod));
 
         $query = "UPDATE payment_methods_assigned_to_users SET name = '$newCategoryName'"
-               . " WHERE payment_methods_assigned_to_users.id = '$idCategoryNameToModify'";
+               . " WHERE payment_methods_assigned_to_users.id = '$idCategoryNameToModify'"
+               . " AND user_id = '$userId'"
         
         if ($this->dbo->query($query)) {
         	return ACTION_OK;
