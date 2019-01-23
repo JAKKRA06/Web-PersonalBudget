@@ -41,17 +41,25 @@
         <article class="active" id="expense">
             <section class="title">DODAWANIE WYDATKU</section>
                 <?php
-                    if (isset($_SESSION['statement'])) {
-                        echo '<div class="expense_success">'.$_SESSION['statement'].'</div>';
-                        unset($_SESSION['statement']);
+                    if(isset($_SESSION['statement'])) {
+                        $statement = $_SESSION['statement'];
+                        if($statement == 'Dodano wydatek !') {
+                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
+                        } else {
+                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
+                        }
+
+                       unset($_SESSION['statement']);
                     }
                 ?>
+
             <form method="post" action="index.php?action=addExpense">
                              
                 <article class="row">
                     <label class="col-sm-4 label">Kwota</label>
                         <div class="col-sm-8 label">
-                            <input type="text" name="expense_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'">
+                            <input type="text" name="expense_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'" value="<?php  if (isset($_SESSION['amountExpenseRemember'])) { echo $_SESSION['amountExpenseRemember']; unset($_SESSION['amountExpenseRemember']);
+                         } ?>">
                         </div>
                 </article>
 
@@ -66,7 +74,6 @@
                     <label class="col-sm-4 label">Kategoria</label>
                         <div class="col-sm-8 label">
                             <select class="custom-select" name="expense_category_select"> 
-                                <option selected >Rozwiń</option>
                         <?php 
                             $allExpenses = $PB->selectAllExpenses();
                             while ($row = $allExpenses->fetch_assoc()) :
@@ -81,7 +88,6 @@
                     <label class="col-sm-6 label">Sposób płatności</label>
                         <div class="col-sm-6 label">
                             <select class="custom-select" name="expense_payment_method">
-                                <option selected >Rozwiń</option>
                         <?php 
                             $allPaymentMethods = $PB->selectAllPaymentMethods();
                             while ($row = $allPaymentMethods->fetch_assoc()) :
@@ -95,7 +101,8 @@
                 <article class="row">
                     <label class="col-sm-4 label">Komentarz</label>
                         <div class="col-sm-8 label">
-                      <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'"> 
+                      <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'" value="<?php  if (isset($_SESSION['commentExpenseRemember'])) { echo $_SESSION['commentExpenseRemember']; unset($_SESSION['commentExpenseRemember']);
+                         } ?>"> 
                     </div>
                 </article>
 

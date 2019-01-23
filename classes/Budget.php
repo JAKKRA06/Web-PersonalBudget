@@ -81,15 +81,25 @@ class Budget
 	{
 		if (isset($_POST['income_amount'])) {
 			//spr kwoty
-			$amount = $_POST['income_amount'];
-			
+
+			$incomeDate   = $_POST['income_date'];
+			$amount       = $_POST['income_amount'];
+			$comment      = $_POST['income_comment'];
+			$incomeSelect = $_POST['income_select'];
+
+			$_SESSION['amountIncomeRemember']   = $amount;
+            $_SESSION['dateIncomeRemember']     = $incomeDate;
+            $_SESSION['commentIncomeRemember']  = $comment;
+            $_SESSION['categoryIncomeRemember'] = $incomeSelect;
+
+
+
+
 			if (is_numeric($amount) == false) {
 				return INVALID_FORMAT;
 			}
 			
 			// spr daty 
-			$incomeDate = $_POST['income_date'];
-
 			$year  = substr($incomeDate, 0, 4);
 			$month = substr($incomeDate, 5, 2);
 			$day   = substr($incomeDate, 8);
@@ -100,7 +110,6 @@ class Budget
 
 			//spr komentarza max 100 
 			
-			$comment = $_POST['income_comment'];
 			if (strlen($comment) > 100 ) {
                 return COMMENT_TOO_LONG;
           	}
@@ -116,11 +125,11 @@ class Budget
 			if (!in_array($_POST['income_select'], $incomeCategoryArray)) {
                 return FORM_DATA_MISSING;
 			}
-			
-			$incomeSelect = $_POST['income_select'];
+		    
 			$username = $_SESSION['loginUser'];
 						
-            $userId = $_SESSION['userId'];					
+            $userId = $_SESSION['userId'];	
+
 
 
             $query = "SELECT id FROM incomes_category_assigned_to_users WHERE "
@@ -221,15 +230,26 @@ class Budget
     {
         if (isset($_POST['expense_amount'])) {
 
+			$amount                = $_POST['expense_amount'];
+			$expenseDate           = $_POST['expense_date'];
+			$paymentMethodFromPost = $_POST['expense_payment_method'];
+            $expenseCategorySelect = $_POST['expense_category_select'];
+			$comment               = $_POST['expense_comment'];
+
+
+			$_SESSION['amountExpenseRemember']   = $amount;
+            $_SESSION['dateExpenseRemember']     = $expenseDate;
+            $_SESSION['commentExpenseRemember']  = $comment;
+            $_SESSION['categoryExpenseRemember'] = $expenseCategorySelect;
+            $_SESSION['expensePaymentRemember']  = $paymentMethodFromPost;
+
+
 			//spr kwoty
-			$amount = $_POST['expense_amount'];
-			
 			if (is_numeric($amount) == false) {
 				return INVALID_FORMAT;
 			}
-			// spr daty 
-			$expenseDate = $_POST['expense_date'];
 
+			// spr daty 
 			$year  = substr($expenseDate, 0, 4);
 			$month = substr($expenseDate, 5, 2);
 			$day   = substr($expenseDate, 8);
@@ -246,18 +266,15 @@ class Budget
 				  $paymentMethodsArray[] .= $row['name'];
 			}
 
-			$paymentMethodFromPost = $_POST['expense_payment_method'];
 
 			if(!in_array($paymentMethodFromPost, $paymentMethodsArray)) {
                 return FORM_DATA_MISSING;
 			}
 		
-			$comment = $_POST['expense_comment'];
 			if (strlen($comment) > 100 ) {
                 return COMMENT_TOO_LONG;
             }
 
-            $expenseCategorySelect = $_POST['expense_category_select'];
 			$expensesCategoryArray = [];
 
 			$expensesCategory = $this->selectAllExpenses();
@@ -620,6 +637,7 @@ class Budget
         if (!$this->dbo) {
             return SERVER_ERROR;
         }
+
         $userId = $_SESSION['userId'];
         
         $query  = "SELECT id FROM incomes_category_assigned_to_users WHERE name = '$dropIncomeCategory'"
@@ -633,7 +651,7 @@ class Budget
                . " AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
-        	if ($result->num_rows == 0) {            
+        	if ($result->num_rows < 1) {         
                 $query1  = "INSERT INTO incomes_category_assigned_to_users  VALUES"
                         . " (NULL, $userId, 'Pozostale')";
                 if($this->dbo->query($query1)) {
@@ -647,21 +665,21 @@ class Budget
                 $row                 = $result->fetch_assoc();
                 $idCategoryPozostale = $row['id'];  
             }
-        }
 
-        $query = "UPDATE incomes SET income_category_assigned_to_user_id = '$idCategoryPozostale'"
-               . " WHERE incomes.income_category_assigned_to_user_id = '$dropCategoryId'";
+	        $query = "UPDATE incomes SET income_category_assigned_to_user_id = '$idCategoryPozostale'"
+	               . " WHERE incomes.income_category_assigned_to_user_id = '$dropCategoryId'";
 
-        if ($this->dbo->query($query)) {
-            $query  = "DELETE FROM incomes_category_assigned_to_users"
-                    . " WHERE name = '$dropIncomeCategory' AND user_id = '$userId'";
+	        if ($this->dbo->query($query)) {
+	            $query  = "DELETE FROM incomes_category_assigned_to_users"
+	                    . " WHERE name = '$dropIncomeCategory' AND user_id = '$userId'";
 
-    	    if ($this->dbo->query($query)) {
-    		    return ACTION_OK;
-        	} else {
-    	    	return ACTION_FAILED;
-    	    }
-        }
+	    	    if ($this->dbo->query($query)) {
+	    		    return ACTION_OK;
+	        	} else {
+	    	    	return ACTION_FAILED;
+	    	    }
+	        }
+	    }
     }
 
     function dropPaymentMethod($dropPaymentMethod)
@@ -702,12 +720,13 @@ class Budget
                . " AND user_id = '$userId'";
 
         if ($result = $this->dbo->query($query)) {
-        	if ($result->num_rows == 0) {            
+        	if ($result->num_rows < 1) {              
                 $query1  = "INSERT INTO expenses_category_assigned_to_users  VALUES"
-                        . " (NULL, $userId, 'Pozostale')";
+                         . " (NULL, $userId, 'Pozostale')";
                 if($this->dbo->query($query1)) {
                    $query2 = "SELECT id FROM expenses_category_assigned_to_users WHERE name = 'Pozostale'"
                            . " AND user_id = '$userId'";
+
                    $result = $this->dbo->query($query2);               
         		   $row                 = $result->fetch_assoc();
                    $idCategoryPozostale = $row['id'];       
@@ -716,25 +735,21 @@ class Budget
                 $row                 = $result->fetch_assoc();
                 $idCategoryPozostale = $row['id'];  
             }
-        }
 
-        $query = "UPDATE expenses SET expense_category_assigned_to_user_id = '$idCategoryPozostale'"
-               . " WHERE expenses.expense_category_assigned_to_user_id = '$dropCategoryId'";
+	        $query = "UPDATE expenses SET expense_category_assigned_to_user_id = '$idCategoryPozostale'"
+	               . " WHERE expenses.expense_category_assigned_to_user_id = '$dropCategoryId'";
 
-        if ($this->dbo->query($query)) {
-            $query  = "DELETE FROM expenses_category_assigned_to_users"
-                    . " WHERE name = '$dropExpenseCategory' AND user_id = '$userId'";
+	        if ($this->dbo->query($query)) {
+	            $query  = "DELETE FROM expenses_category_assigned_to_users"
+	                    . " WHERE name = '$dropExpenseCategory' AND user_id = '$userId'";
 
-            if (!$result = $this->dbo->query($query)) {
-        	    return SERVER_ERROR;
-            }
-
-    	    if ($this->dbo->query($query)) {
-    		    return ACTION_OK;
-        	} else {
-    	    	return ACTION_FAILED;
-    	    }
-        }
+	    	    if ($this->dbo->query($query)) {
+	    		    return ACTION_OK;
+	        	} else {
+	    	    	return ACTION_FAILED;
+	    	    }
+	        }
+	    }
     }
 
     function dropSingleRecordOfIncome($singleRecordId)

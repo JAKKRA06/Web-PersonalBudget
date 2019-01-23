@@ -451,14 +451,23 @@ td p
 	color         : red;
 	margin-top    : 10px;
 	margin-bottom : 10px;
+    text-align    : center;
 }
 
-.income_success
+.success
 {
     text-align    : center;
     color         : green;
 	font-size     : 20px;
     margin-bottom : 10px;	
+}
+
+.warrning
+{
+    text-align    : center;
+    color         : red;
+    font-size     : 20px;
+    margin-bottom : 10px;   
 }
 
 .infoStatement
@@ -467,14 +476,6 @@ td p
     color         : #0066cc;
     font-size     : 20px;
     margin-bottom : 10px;   
-}
-
-.expense_success
-{
-    text-align    : center;
-    color         : red;
-    margin-bottom : 10px;
-	font-size     : 20px;	
 }
 	
 #comment

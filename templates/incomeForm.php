@@ -41,38 +41,46 @@
             <section class="title">DODAWANIE PRZYCHODU</section>
                 <?php
                     if(isset($_SESSION['statement'])) {
-                       echo '<div class="income_success">'.$_SESSION['statement'].'</div>';
+                        $statement = $_SESSION['statement'];
+                        if($statement == 'Dodano przychód !') {
+                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
+                        } else {
+                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
+                        }
+
                        unset($_SESSION['statement']);
                     }
                 ?>
+
             <form method="post" action="index.php?action=addIncome">
 
                 <article class="row">
                     <label class="col-sm-4 label">Kwota</label>
                         <div class="col-sm-8 label">
-                            <input type="text" name="income_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'">                                  
+                            <input type="text" name="income_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'" value="<?php  if (isset($_SESSION['amountIncomeRemember'])) { echo $_SESSION['amountIncomeRemember']; unset($_SESSION['amountIncomeRemember']);
+                         } ?>">                             
                         </div>
                 </article>
 
                 <article class="row">
                     <label class="col-sm-4 label">Data</label>
                         <div class="col-sm-8 label">
-                            <input type="date" id="currentDate" name="income_date" class="form-control">    
+                            <input type="date" id="currentDate" name="income_date" class="form-control">   
                         </div>
                 </article>
 
                 <article class="row">
                     <label class="col-sm-4 label">Komentarz</label>
                         <div class="col-sm-8 label">
-                      <input type="text" name="income_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'"> 
+                      <input type="text" name="income_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'" value="<?php  if (isset($_SESSION['commentIncomeRemember'])) { echo $_SESSION['commentIncomeRemember']; unset($_SESSION['commentIncomeRemember']);
+                         } ?>">
                     </div>
                 </article>
 
                 <article class="row">
                   <label class="col-sm-4 label">Kategoria</label>
                     <div class="col-sm-8 label">
-                      <select class="custom-select" name="income_select">  
-                        <option selected >Rozwiń</option>
+                      <select class="custom-select" name="income_select" >
                         <?php 
                             $allIncomes = $PB->selectAllIncomes();
                             while ($row = $allIncomes->fetch_assoc()) :

@@ -43,7 +43,17 @@
             <section class="title">EDYCJA PROFILU UŻYTKOWNIKA</section>
                 <?php
                     if(isset($_SESSION['statement'])) {
-                       echo '<div class="infoStatement">'.$_SESSION['statement'].'</div>';
+                        $statement = $_SESSION['statement'];
+                        if(($statement == 'Zmieniono hasło !') || ($statement == 'Zmodyfikowano dane uzytkownika !') ||
+                           ($statement == 'Zmodyfikowano nazwę kategorii przychodu !') || ($statement == 'Zmodyfikowano nazwę metody płatności !') ||
+                           ($statement == 'Zmodyfikowano nazwę kategorii wydatku !') || ($statement == 'Dodano nową metodę płatności !') ||
+                           ($statement == 'Dodano nową kategorię !') || ($statement == 'Usunięto wybraną kategorię !'))  {
+                           
+                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
+                        } else {
+                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
+                        }
+
                        unset($_SESSION['statement']);
                     }
                 ?>

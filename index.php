@@ -4,7 +4,7 @@ spl_autoload_register('classLoader');
 session_start();
 
 try{
- $PB = new User('localhost', 'root', '', 'personal_budget');
+$PB = new User('localhost', 'root', '', 'personal_budget');
 
   $action = 'showStart';
   if(isset($_GET['action'])) {
@@ -297,7 +297,7 @@ try{
       break;  
     case 'changePaymentMethod' :
       $categoryNameToModify = $_POST['categoryNameToModify'];
-      $newPaymentMethod = $_POST['newPaymentMethod'];
+      $newPaymentMethod     = $_POST['newPaymentMethod'];
       switch ($PB->changePaymentMethod($categoryNameToModify, $newPaymentMethod)) {
         case ACTION_OK :
           $PB->setMessage('Zmodyfikowano nazwę metody płatności !');
@@ -312,7 +312,7 @@ try{
       header('Location: index.php?action=showSettings');
       break;  
     case 'changeIncomeCategory' :
-      $categoryNameToModify = $_POST['categoryNameToModify'];
+      $categoryNameToModify  = $_POST['categoryNameToModify'];
       $newIncomeCategoryName = $_POST['newIncomeCategoryName'];
       switch ($PB->changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName)) {
         case ACTION_OK :
@@ -385,13 +385,13 @@ try{
   }
 }
 
-catch(Excepiton $e){
+catch(Excepiton $e) {
   echo 'Bład: '.$e->getMessage();
   exit("Strona chwilowo niedostępna");
 }
 
-function classLoader($nazwa){
-  if(file_exists("classes/$nazwa.php")){
+function classLoader($nazwa) {
+  if(file_exists("classes/$nazwa.php")) {
     require_once("classes/$nazwa.php");
   } else {
     throw new Exception("Brak pliku z definicją klasy.");

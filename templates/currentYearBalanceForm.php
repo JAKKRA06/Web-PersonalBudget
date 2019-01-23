@@ -160,8 +160,6 @@ if ($result = $this->dbo->query($queryExpense)) :
         if ($categoryName != 'Pozostale') :
             echo '<div class="category_list_name_expense">'.$categoryName.':'.' '.$sumExpense.'</div>'.'<br/>';
 
-            $dataPoints[] = array ("label"=>$categoryName, "y"=>$sumExpense);
-
             $query2 = "SELECT id, amount, date_of_expense, expense_comment FROM "
                     . "`expenses` WHERE date_of_expense BETWEEN '$startDate' "
                     . " AND '$lastDate' AND user_id = '$userId' AND "
@@ -180,7 +178,7 @@ echo '<div class="category_list"><i class="icon-bank"></i>'
      .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=currentYear><i class="icon-pencil"></i></a>'
      .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=currentYear"><i class="icon-trash"></i></a></div>'.'<br/>';
 
- endwhile; endif; endwhile; endif;?>                   
+ endwhile; endif; $dataPoints[] = array ("label"=>$categoryName, "y"=>$sumExpense); endwhile; endif;?>                   
                             </td>
                         </tr>
                     </table>
