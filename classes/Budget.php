@@ -932,7 +932,7 @@ class Budget
 
         $query = "SELECT name FROM  incomes_category_assigned_to_users"
                . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
-               
+
         if($result = $this->dbo->query($query)) {
         	if($result->num_rows > 0) {
         	   return CATEGORY_ALREADY_EXIST;
@@ -988,6 +988,7 @@ class Budget
 
         $query  = "SELECT name FROM  payment_methods_assigned_to_users"
                 . " WHERE name = '$newCategoryName' AND user_id = '$userId'";
+
         if($result = $this->dbo->query($query)) {
         	if($result->num_rows > 0) {
         	   return CATEGORY_ALREADY_EXIST;
@@ -1027,8 +1028,8 @@ class Budget
 
         $query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName'"
                . " WHERE expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
-               . " AND user_id = '$userId'"
-          echo $newExpenseCategoryName;exit();      
+               . " AND user_id = '$userId'";
+   
         if ($this->dbo->query($query)) {
         	return ACTION_OK;
         } else {
@@ -1084,7 +1085,7 @@ class Budget
 
         $query = "UPDATE payment_methods_assigned_to_users SET name = '$newCategoryName'"
                . " WHERE payment_methods_assigned_to_users.id = '$idCategoryNameToModify'"
-               . " AND user_id = '$userId'"
+               . " AND user_id = '$userId'";
         
         if ($this->dbo->query($query)) {
         	return ACTION_OK;

@@ -89,7 +89,13 @@
                     </section>
                 <?php
                     if(isset($_SESSION['statement'])) {
-                       echo '<div class="income_success">'.$_SESSION['statement'].'</div>';
+                        $statement = $_SESSION['statement'];
+                        if(($statement == 'Wprowadzono zmiany !') || ($statement == 'Usunięto wybrany rekord !')) {
+                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
+                        } else {
+                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
+                        }
+
                        unset($_SESSION['statement']);
                     }
                 ?>
