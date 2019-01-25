@@ -361,7 +361,7 @@ $PB = new User('localhost', 'root', '', 'personal_budget');
         }
       header('Location: index.php?action=showSettings');
       break;
-    case 'deleteProfile' :
+    /*case 'deleteProfile' :
       if(isset($_GET['id'])) {
         $id = $_GET['id'];
       }
@@ -379,7 +379,7 @@ $PB = new User('localhost', 'root', '', 'personal_budget');
           $PB->setMessage('Bład serwera !');
       }
       header('Location: index.php?action=showSettings');
-      break;
+      break;*/
       default :
       include 'templates/mainTemplate.php';
   }

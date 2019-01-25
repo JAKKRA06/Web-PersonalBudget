@@ -123,29 +123,28 @@ if ($result = $this->dbo->query($queryIncome)) :
         $row1    = $result1->fetch_assoc();
         $categoryName = $row1['name'];
 
-        if ($categoryName != 'Pozostale') :
-            echo '<div class="category_list_name_income">'.$categoryName.':'.' '.$sumIncome.'</div>'.'<br/>';
+        echo '<div class="category_list_name_income">'.$categoryName.':'.' '.$sumIncome.'</div>'.'<br/>';
 
-            $query2 = "SELECT id, amount, date_of_income, income_comment FROM "
-                    . "`incomes` WHERE date_of_income BETWEEN '$startDate' "
-                    . " AND '$lastDate' AND user_id = '$userId' AND "
-                    . " income_category_assigned_to_user_id = '$incomeCategoryId'"
-                    . " ORDER BY amount DESC";
+        $query2 = "SELECT id, amount, date_of_income, income_comment FROM "
+                . "`incomes` WHERE date_of_income BETWEEN '$startDate' "
+                . " AND '$lastDate' AND user_id = '$userId' AND "
+                . " income_category_assigned_to_user_id = '$incomeCategoryId'"
+                . " ORDER BY amount DESC";
 
-            $result2 =  $this->dbo->query($query2);
+        $result2 =  $this->dbo->query($query2);
 
-            while ($row2 = $result2->fetch_assoc()) :
-                  $incomeId      = $row2['id'];
-                  $incomeDate    = $row2['date_of_income'];
-                  $incomeAmount  = $row2['amount'];
-                  $incomeComment = $row2['income_comment'];
+        while ($row2 = $result2->fetch_assoc()) :
+              $incomeId      = $row2['id'];
+              $incomeDate    = $row2['date_of_income'];
+              $incomeAmount  = $row2['amount'];
+              $incomeComment = $row2['income_comment'];
 
 echo '<div class="category_list"><i class="icon-bank"></i>'
      . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
      .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=nonStandard><i class="icon-pencil"></i></a>'
      .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=nonStandard"><i class="icon-trash"></i></a></div>'.'<br/>';
 
-endwhile; endif; endwhile; endif;?>             
+endwhile; endwhile; endif;?>             
                             </td>
                         </tr>
                     </table>
