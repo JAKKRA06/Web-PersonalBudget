@@ -172,28 +172,27 @@ if ($result = $this->dbo->query($queryExpense)) :
         $row1    = $result1->fetch_assoc();
         $categoryName = $row1['name'];
 
-        if ($categoryName != 'Pozostale') :
-            echo '<div class="category_list_name_expense">'.$categoryName.':'.' '.$sumExpense.'</div>'.'<br/>';
+        echo '<div class="category_list_name_expense">'.$categoryName.':'.' '.$sumExpense.'</div>'.'<br/>';
 
-            $query2 = "SELECT id, amount, date_of_expense, expense_comment FROM "
-                    . "`expenses` WHERE date_of_expense BETWEEN '$startDate' "
-                    . " AND '$lastDate' AND user_id = '$userId' AND "
-                    . " expense_category_assigned_to_user_id = '$expenseCategoryId'"
-                    . " ORDER BY amount DESC";
-            $result2   =  $this->dbo->query($query2);
+        $query2 = "SELECT id, amount, date_of_expense, expense_comment FROM "
+                . "`expenses` WHERE date_of_expense BETWEEN '$startDate' "
+                . " AND '$lastDate' AND user_id = '$userId' AND "
+                . " expense_category_assigned_to_user_id = '$expenseCategoryId'"
+                . " ORDER BY amount DESC";
+        $result2   =  $this->dbo->query($query2);
 
-            while ($row2 = $result2->fetch_assoc()) :
-                  $expenseId      = $row2['id'];                                    
-                  $expenseDate    = $row2['date_of_expense'];
-                  $expenseAmount  = $row2['amount'];
-                  $expenseComment = $row2['expense_comment'];
+        while ($row2 = $result2->fetch_assoc()) :
+              $expenseId      = $row2['id'];                                    
+              $expenseDate    = $row2['date_of_expense'];
+              $expenseAmount  = $row2['amount'];
+              $expenseComment = $row2['expense_comment'];
                 
 echo '<div class="category_list"><i class="icon-bank"></i>'
      . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
      .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=nonStandard><i class="icon-pencil"></i></a>'
      .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=nonStandard"><i class="icon-trash"></i></a></div>'.'<br/>';
 
- endwhile; endif; $dataPoints[] = array ("label"=>$categoryName, "y"=>$sumExpense); endwhile; endif;?>                
+ endwhile; $dataPoints[] = array ("label"=>$categoryName, "y"=>$sumExpense); endwhile; endif;?>                
                             </td>
                         </tr>
                     </table>
