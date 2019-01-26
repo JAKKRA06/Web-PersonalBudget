@@ -436,8 +436,7 @@ class Budget
             }
 
 			$queryIncome = "SELECT SUM(amount) FROM `incomes` WHERE date_of_income"
-			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			             . " AND income_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryIncome);
 			$row    = $result->fetch_assoc();
@@ -457,8 +456,7 @@ class Budget
                 $idCategoryNamePozostale = $row['id'];
             }
 			$queryExpense = "SELECT SUM(amount) FROM `expenses` WHERE date_of_expense"
-			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			              . " AND expense_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryExpense);
 			$row    = $result->fetch_assoc();
@@ -490,8 +488,7 @@ class Budget
             }
 
 			$queryIncome = "SELECT SUM(amount) FROM `incomes` WHERE date_of_income"
-			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			             . " AND income_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryIncome);
 			$row    = $result->fetch_assoc();
@@ -511,8 +508,7 @@ class Budget
                 $idCategoryNamePozostale = $row['id'];
             }
 			$queryExpense = "SELECT SUM(amount) FROM `expenses` WHERE date_of_expense"
-			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			              . " AND expense_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryExpense);
 			$row    = $result->fetch_assoc();
@@ -544,8 +540,7 @@ class Budget
             }
 
 			$queryIncome = "SELECT SUM(amount) FROM `incomes` WHERE date_of_income"
-			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			             . " AND income_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryIncome);
 			$row    = $result->fetch_assoc();
@@ -565,8 +560,7 @@ class Budget
                 $idCategoryNamePozostale = $row['id'];
             }
 			$queryExpense = "SELECT SUM(amount) FROM `expenses` WHERE date_of_expense"
-			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			              . " AND expense_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryExpense);
 			$row    = $result->fetch_assoc();
@@ -594,8 +588,7 @@ class Budget
             }
 
 			$queryIncome = "SELECT SUM(amount) FROM `incomes` WHERE date_of_income"
-			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			             . " AND income_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			             . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryIncome);
 			$row    = $result->fetch_assoc();
@@ -615,8 +608,7 @@ class Budget
                 $idCategoryNamePozostale = $row['id'];
             }
 			$queryExpense = "SELECT SUM(amount) FROM `expenses` WHERE date_of_expense"
-			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'"
-			              . " AND expense_category_assigned_to_user_id <> '$idCategoryNamePozostale'";
+			              . " BETWEEN '$startDate' AND '$lastDate' AND user_id = '$userId'";
 
 			$result = $this->dbo->query($queryExpense);
 			$row    = $result->fetch_assoc();
