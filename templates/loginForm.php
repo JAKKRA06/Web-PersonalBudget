@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-12">
         <section class="description">
-
+            <h2>Logowanie</h2>
         <form method= "post" action="index.php?action=login">
 
           <label for="usr">Nazwa użytkownika:</label>

@@ -1000,7 +1000,7 @@ class Budget
 
 
 
-    function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)
+    function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName, $amountLimit)
     {
        	if (!$this->dbo) {
     		return SERVER_ERROR;
@@ -1018,8 +1018,9 @@ class Budget
 
         $newCategoryName = ucwords(strtolower($newExpenseCategoryName));
 
-        $query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName'"
-               . " WHERE expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
+        $query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName',"
+               . " expense_limit = '$amountLimit' WHERE "
+               . " expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
                . " AND user_id = '$userId'";
    
         if ($this->dbo->query($query)) {

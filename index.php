@@ -5,7 +5,7 @@ session_start();
 
 try{
  $PB = new User('localhost', 'root', '', 'personal_budget');
- 
+
   $action = 'showStart';
   if(isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -282,7 +282,8 @@ try{
     case 'changeExpenseCategory' :
       $categoryNameToModify   = $_POST['categoryNameToModify'];
       $newExpenseCategoryName = $_POST['newExpenseCategoryName'];
-      switch ($PB->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)) {
+      $amountLimit = $_POST['inputLimit'];
+      switch ($PB->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName, $amountLimit)) {
         case ACTION_OK :
           $PB->setMessage('Zmodyfikowano nazwę kategorii wydatku !');
           break;
