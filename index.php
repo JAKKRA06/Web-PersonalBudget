@@ -4,7 +4,7 @@ spl_autoload_register('classLoader');
 session_start();
 
 try{
-$PB = new User('localhost', 'bubu06_root-pb', 'antananarywa06', 'bubu06_personal-budget');
+ $PB = new User('localhost', 'root', '', 'personal_budget');
 
   $action = 'showStart';
   if(isset($_GET['action'])) {

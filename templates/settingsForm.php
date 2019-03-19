@@ -193,6 +193,7 @@
 						<?php endwhile;?>
 							</div>
 							<br>
+							<input type="checkbox" style="color: red">Chcę wprowadzić limit dla kategorii
 							<input type="text"  class="modalInputText" name="newExpenseCategoryName" placeholder="nazwa kategorii" onfocus="this.placeholder=''" onblur="this.placeholder='nazwa kategorii'">
 							<button type="submit" class="btn btn-success">Potwierdź</button>
 						</form>
