@@ -137,8 +137,9 @@ class User extends MyDB
             $this->dbo->query($query); 
 
             $query = "INSERT INTO expenses_category_assigned_to_users"
-                   . " (user_id, name) SELECT  '$userId', name FROM "
-                   . "expenses_category_default";
+                   . " (user_id, name, expense_limit) SELECT  '$userId',"
+                   . " name, expense_limit FROM "
+                   . " expenses_category_default";
             $this->dbo->query($query);
             
             $query = "INSERT INTO payment_methods_assigned_to_users "
@@ -300,10 +301,10 @@ class User extends MyDB
 
 
 
-    function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName)
+    function changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName, $amountLimit)
     {
          $change = new Budget($this->dbo);
-         return $change->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName);
+         return $change->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName, $amountLimit);
     }
 
     function changeIncomeCategory($categoryNameToModify, $newIncomeCategoryName)

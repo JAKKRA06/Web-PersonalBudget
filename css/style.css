@@ -693,3 +693,20 @@ border: 1px solid #000;}
 {
     text-decoration: none;
 }
+
+.limitDiv
+{
+    text-align  : center;
+    margin      :   15px;
+}
+
+#inputLimit
+{
+    margin-top    : 10px;
+    margin-bottom : 10px;
+}
+
+.inactive
+{
+    opacity: 0.5;
+}

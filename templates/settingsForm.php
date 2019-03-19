@@ -193,6 +193,14 @@
 						<?php endwhile;?>
 							</div>
 							<br>
+							<div class="limitDiv">
+								<input type="checkbox" id="zaznaczLimit" name="zaznaczLimit"/>Zaznacz opcję, aby dodać limit kwoty
+							</div>
+							<div>	
+								<input type="text" id="inputLimit" name="inputLimit" placeholder="Podaj limit kwoty" onfocus="this.placeholder=''" onblur="this.placeholder='podaj limit kwoty'">
+							</div>	
+						
+
 							<input type="text"  class="modalInputText" name="newExpenseCategoryName" placeholder="nazwa kategorii" onfocus="this.placeholder=''" onblur="this.placeholder='nazwa kategorii'">
 							<button type="submit" class="btn btn-success">Potwierdź</button>
 						</form>
