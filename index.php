@@ -285,10 +285,10 @@ try{
       $amountLimit = $_POST['inputLimit'];
       switch ($PB->changeExpenseCategory($categoryNameToModify, $newExpenseCategoryName, $amountLimit)) {
         case ACTION_OK :
-          $PB->setMessage('Zmodyfikowano nazwę kategorii wydatku !');
+          $PB->setMessage('Edytowano kategorię wydatku !');
           break;
         case ACTION_FAILED :
-          $PB->setMessage('Nie udało się zmodyfikować nazwy kategorii wydatku !');
+          $PB->setMessage('Nie udało się zmodyfikować kategorii wydatku !');
           break;
         case SERVER_ERROR :
           $PB->setMessage('Błąd serwera !');

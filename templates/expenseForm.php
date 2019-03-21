@@ -112,7 +112,7 @@
 
                 <article class="row" >
                     <div class="col-12">
-                        <button type="submit" class="btn btn-lg btn-danger add"><i class="icon-plus"></i></button>
+                        <button type="submit" id="buttonExpensForm" class="btn btn-lg btn-danger add"><i class="icon-plus"></i></button>
                     </div>
                 </article>
                                 

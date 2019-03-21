@@ -58,7 +58,7 @@ session_start();
 				<th>Limit</th>
 				<th>Dotychczas wydano</th>
 				<th>Różnica</th>
-				<th>Wydatki+wpisana kwota</th>
+				<th>Wydatki + wpisana kwota</th>
 			</tr>
 			<tr>
 				<td>'.$expenseLimit.'</td>
@@ -74,7 +74,7 @@ session_start();
 				<th>Limit</th>
 				<th>Dotychczas wydano</th>
 				<th>Różnica</th>
-				<th>Wydatki+wpisana kwota</th>
+				<th>Wydatki + wpisana kwota</th>
 			</tr>
 			<tr>
 				<td>'.$expenseLimit.'</td>
