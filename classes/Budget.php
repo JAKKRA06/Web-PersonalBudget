@@ -1018,11 +1018,20 @@ class Budget
 
         $newCategoryName = ucwords(strtolower($newExpenseCategoryName));
 
-        $query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName',"
-               . " expense_limit = '$amountLimit' WHERE "
-               . " expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
-               . " AND user_id = '$userId'";
-   
+        if($newCategoryName == "") {
+
+	        $query = "UPDATE expenses_category_assigned_to_users SET "
+	               . " expense_limit = '$amountLimit' WHERE "
+	               . " expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
+	               . " AND user_id = '$userId'";      	
+        } else {
+
+			$query = "UPDATE expenses_category_assigned_to_users SET name = '$newCategoryName',"
+	               . " expense_limit = '$amountLimit' WHERE "
+	               . " expenses_category_assigned_to_users.id = '$idCategoryNameToModify' "
+	               . " AND user_id = '$userId'";
+        }
+        
         if ($this->dbo->query($query)) {
         	return ACTION_OK;
         } else {
