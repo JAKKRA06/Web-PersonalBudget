@@ -321,6 +321,11 @@ class User extends MyDB
 
 
 
+
+
+
+
+
     function deleteProfile()
     {
         $profile = new Budget($this->dbo);
