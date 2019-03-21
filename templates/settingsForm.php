@@ -194,14 +194,16 @@
 							</div>
 							<br>
 							<div class="limitDiv">
-								<input type="checkbox" id="zaznaczLimit" name="zaznaczLimit"/>Zaznacz opcję, aby dodać limit kwoty
-							</div>
-							<div>	
-								<input type="text" id="inputLimit" name="inputLimit" placeholder="Podaj limit kwoty" onfocus="this.placeholder=''" onblur="this.placeholder='podaj limit kwoty'">
-							</div>	
-						
+								<label><input type="checkbox" id="zaznaczLimit" name="zaznaczLimit"/>Zaznacz opcję, aby dodać limit kwoty</label>
 
-							<input type="text"  class="modalInputText" name="newExpenseCategoryName" placeholder="nazwa kategorii" onfocus="this.placeholder=''" onblur="this.placeholder='nazwa kategorii'">
+								<label><input type="checkbox" id="zaznaczName" name="zaznaczName"/>Zaznacz opcję, aby zmienić nazwę wybranej kategorii</label>
+							</div>
+								
+
+							<input type="text" id="inputLimit" name="inputLimit" placeholder="Podaj limit kwoty" onfocus="this.placeholder=''" onblur="this.placeholder='podaj limit kwoty'">
+
+							<input type="text"  id = "inputName" class="modalInputText" name="newExpenseCategoryName" placeholder="nazwa kategorii" onfocus="this.placeholder=''" onblur="this.placeholder='nazwa kategorii'">
+							
 							<button type="submit" class="btn btn-success">Potwierdź</button>
 						</form>
 					</div>
