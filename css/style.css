@@ -302,7 +302,7 @@ input[type=password]:focus
 
 .title
 {
-    margin-bottom : 30px;
+    margin-bottom : 20px;
     font-size     : 24px;
     font-weight   : 600;
 }
@@ -709,4 +709,53 @@ border: 1px solid #000;}
 .inactive
 {
     opacity: 0.5;
+}
+
+#infoLimit
+{
+    text-align: center;
+}
+
+#tabelaAjaxOk
+{
+    font-size       : 12px;
+    background      : lightgreen;
+    margin-bottom   : 20px;
+    border-collapse : collapse;
+    text-align      : center;    
+    border-radius   : 10px;
+}
+
+#tabelaAjaxOk th
+{
+    font-size     : 14px;
+    padding       : 15px;
+    border-bottom : 2px solid #000;
+}
+
+#tabelaAjaxOk td
+{
+    padding: 10px 20px;
+}
+
+#tabelaAjaxNotOk
+{
+    font-size       : 12px;
+    background      : #FF3366;
+    margin-bottom   : 20px;
+    border-collapse : collapse;
+    text-align      : center;    
+    border-radius   : 10px;
+}
+
+#tabelaAjaxNotOk th
+{
+    font-size     : 14px;
+    padding       : 15px;
+    border-bottom : 2px solid #000;
+}
+
+#tabelaAjaxNotOk td
+{
+    padding: 10px 20px;
 }

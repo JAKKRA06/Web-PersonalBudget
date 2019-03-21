@@ -40,6 +40,10 @@
     <article class="tab-content">
         <article class="active" id="expense">
             <section class="title">DODAWANIE WYDATKU</section>
+
+            <div id="ajaxResponse">
+                <p id="infoLimit">Brak informacji o limicie. Wpisz kwotę.</p>
+            </div>
                 <?php
                     if(isset($_SESSION['statement'])) {
                         $statement = $_SESSION['statement'];
