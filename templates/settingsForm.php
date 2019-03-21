@@ -106,7 +106,7 @@
                         <p style="text-align: center;">WYDATKI</p>
                         <button type="button" id="editionButtons" class="btn btn-danger"  data-toggle="modal" data-target="#modalDropExpense">Usuń kategorię</button>
                         <button type="button" id="editionButtons" class="btn btn-success"  data-toggle="modal" data-target="#modalAddExpense">Dodaj nową kategorię</button>
-                        <button type="button" id="editionButtons" class="btn btn-primary"  data-toggle="modal" data-target="#modalChangeExpense">Zmień nazwę kategorii</button>
+                        <button type="button" id="editionButtons" class="btn btn-primary"  data-toggle="modal" data-target="#modalChangeExpense">Edycja kategorii</button>
                     </article>
                 </div>
 
@@ -181,8 +181,8 @@
 					  <h4 class="modal-title">Zmień nazwę kategorii wydatku:</h4>
 					</div>
 					<div class="modal-body" style="text-align: center;">
-					  <p><b>Krok 1.</b> Wybierz spośród dostępnych kategorii jedną, <br> której chcesz zmienić nazwę.</p>
-					  <p><b>Krok 2.</b> W polu poniżej wpisz nową nazwę kategorii.</p>
+					  <p><b>Krok 1.</b> Wybierz spośród dostępnych kategorii jedną, <br> której chcesz zmienić nazwę lub wprowadzić limit kwoty.</p>
+					  <p><b>Krok 2.</b> W polach poniżej zaznacz co chcesz zrobić.</p>
 						<form method="post" action="index.php?action=changeExpenseCategory">
 							<div class="modalForm">
                         <?php 
