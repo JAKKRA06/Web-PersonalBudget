@@ -36,11 +36,11 @@ session_start();
     $expenseLimit = $row['expense_limit'];
 
     //obliczenia 
-    if($sumAmountCategory == 0) {
-       $actualExpenses = 0;
-    } else {
-        $actualExpenses = ($expenseLimit-$sumAmountCategory);
+    if($sumAmountCategory == "") {
+       $sumAmountCategory = 0;
     }
+    $actualExpenses = ($expenseLimit-$sumAmountCategory);
+
     if($amount == "") {
     	$expensesAndCurrentAmount = ($sumAmountCategory);
     } else {

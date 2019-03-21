@@ -200,7 +200,7 @@
 							</div>
 								
 
-							<input type="text" id="inputLimit" name="inputLimit" placeholder="Podaj limit kwoty" onfocus="this.placeholder=''" onblur="this.placeholder='podaj limit kwoty'">
+							<input type="text" id="inputLimit" class="modalInputText" name="inputLimit" placeholder="podaj limit kwoty" onfocus="this.placeholder=''" onblur="this.placeholder='podaj limit kwoty'">
 
 							<input type="text"  id = "inputName" class="modalInputText" name="newExpenseCategoryName" placeholder="nazwa kategorii" onfocus="this.placeholder=''" onblur="this.placeholder='nazwa kategorii'">
 							
