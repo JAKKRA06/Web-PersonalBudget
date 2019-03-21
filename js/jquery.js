@@ -6,7 +6,7 @@ $(function() {
 		var dane = "expense_amount=" + expense_amount + "&expense_category_select=" + expense_category_select;
 
 		$.post('classes/Ajax.php', dane, function(data) {
-			$('#infoLimit').html(data).hide().slideDown(500);
+			$('#infoLimit').html(data).hide().fadeIn(800);
 		});
 
 
@@ -19,7 +19,7 @@ $('.custom-select').change(function() {
 		var dane = "expense_amount=" + expense_amount + "&expense_category_select=" + expense_category_select;
 
 		$.post('classes/Ajax.php', dane, function(data) {
-			$('#infoLimit').html(data).hide().slideDown(500);
+			$('#infoLimit').html(data).hide().fadeIn(800);
 	});
 
 });

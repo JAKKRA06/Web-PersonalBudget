@@ -77,9 +77,9 @@ session_start();
 				<th>Wydatki+wpisana kwota</th>
 			</tr>
 			<tr>
-				<td>'.$expenseLimit.'</td>;
-				<td>'.$sumAmountCategory.'</td>;
-				<td>'.$actualExpenses.'</td>;
+				<td>'.$expenseLimit.'</td>
+				<td>'.$sumAmountCategory.'</td>
+				<td>'.$actualExpenses.'</td>
 				<td>'.$expensesAndCurrentAmount.'</td>
 
 			</tr>
