@@ -393,7 +393,7 @@ input[type=password]:focus
 
 a:hover
 {
-    text-decoration: none;
+    text-decoration : none;
 }
 td a
 {
@@ -516,14 +516,14 @@ td p
 
 .category_list
 {
-    font-size: 16px;
-    color: #000;
+    font-size : 16px;
+    color     : #000;
 }
 
 .icon-pencil,
 .icon-trash
 {
-    display: inline;
+    display : inline;
 }
 
 .saving
@@ -607,13 +607,13 @@ border: 1px solid #000;}
 
 .editionUser
 {
-    border-bottom: 1px solid #000;
-    margin-bottom: 21px;
+    border-bottom : 1px solid #000;
+    margin-bottom : 21px;
 }
 
 .modalInputText
 {
-    width: 220px;
+    width : 220px;
 }
 
 .modalInputText:focus
@@ -658,7 +658,7 @@ border: 1px solid #000;}
 
 .modal-header
 {
-    border-bottom: solid 1px #000;
+    border-bottom : solid 1px #000;
 }
 
 .label
@@ -675,7 +675,7 @@ border: 1px solid #000;}
 
 .editSubmit
 {
-    margin-top: 7px;
+    margin-top : 7px;
 }
 
 .modal-backdrop
@@ -685,13 +685,13 @@ border: 1px solid #000;}
 
 .button-modify
 {
-    width: 100px;
-    border-radius: 20px;
+    width         : 100px;
+    border-radius : 20px;
 }
 
 .form-control:focus
 {
-    text-decoration: none;
+    text-decoration : none;
 }
 
 .limitDiv
@@ -706,14 +706,9 @@ border: 1px solid #000;}
     margin-bottom : 10px;
 }
 
-.inactive
-{
-    opacity: 0.5;
-}
-
 #infoLimit
 {
-    text-align: center;
+    text-align : center;
 }
 
 #tabelaAjaxOk
@@ -735,7 +730,7 @@ border: 1px solid #000;}
 
 #tabelaAjaxOk td
 {
-    padding: 10px 20px;
+    padding : 10px 20px;
 }
 
 #tabelaAjaxNotOk
@@ -757,5 +752,5 @@ border: 1px solid #000;}
 
 #tabelaAjaxNotOk td
 {
-    padding: 10px 20px;
+    padding : 10px 20px;
 }
