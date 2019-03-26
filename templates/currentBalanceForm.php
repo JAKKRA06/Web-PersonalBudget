@@ -1,4 +1,7 @@
- <?php if (!isset($_SESSION['loginUser'])) exit(); ?>
+<?php
+if (!isset($_SESSION['loginUser']))
+    exit();
+?>
 
  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
@@ -23,10 +26,10 @@
     <div class="col-sm-12">
         <section class="logger">
             <?php
-                $str = $_SESSION['loginUser'];
-                $str = strtoupper($str);
-                     echo "Witaj: ".'<i>'.$str.'</i>';
-            ?>                    
+$str = $_SESSION['loginUser'];
+$str = strtoupper($str);
+echo "Witaj: " . '<i>' . $str . '</i>';
+?>                    
         </section>
     </div>
               
@@ -49,14 +52,14 @@
                 <a href="index.php?action=showBalance" id ="balanceTab" class="active">Przeglądaj bilans</a>
                 <a href="index.php?action=showSettings">Ustawienia</a>
                 <?php
-                  echo '<a href="index.php?action=logout">Wyloguj</a>';
-                ?>
-                <a class="icon" onclick="myFunction()">
+echo '<a href="index.php?action=logout">Wyloguj</a>';
+?>
+               <a class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i></a>    
             </article>   
         </nav>                       
     </div>
-			   
+               
      <article class="tab-content">
         <article class="active" id="balance">
             <div class="row">
@@ -76,21 +79,23 @@
 
                 <div class="col-md-12">
                     <section id="dropDownPeroid">
-                        <?php echo 'Bieżący miesiąc';?>
-                    </section>
+                        <?php
+echo 'Bieżący miesiąc';
+?>
+                   </section>
                 <?php
-                    if(isset($_SESSION['statement'])) {
-                        $statement = $_SESSION['statement'];
-                        if(($statement == 'Wprowadzono zmiany !') || ($statement == 'Usunięto wybrany rekord !')) {
-                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
-                        } else {
-                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
-                        }
-
-                       unset($_SESSION['statement']);
-                    }
-                ?>
-                </div>
+if (isset($_SESSION['statement'])) {
+    $statement = $_SESSION['statement'];
+    if (($statement == 'Wprowadzono zmiany !') || ($statement == 'Usunięto wybrany rekord !')) {
+        echo '<div class="success">' . $_SESSION['statement'] . '</div>';
+    } else {
+        echo '<div class="warrning">' . $_SESSION['statement'] . '</div>';
+    }
+    
+    unset($_SESSION['statement']);
+}
+?>
+               </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
@@ -101,45 +106,34 @@
                         <tr>
                             <td id="tableIncome">
 <?php
-if ($result = $this->dbo->query($queryIncome)) :
-	while ($row = $result->fetch_assoc()) :
-          
-		$incomeCategoryId = $row['income_category_assigned_to_user_id'];
-		$sumIncome        = $row['SUM(amount)'];
-
-		$query1  = "SELECT * FROM incomes_category_assigned_to_users "
-		         . " WHERE id = '$incomeCategoryId'";
-
-		$result1 = $this->dbo->query($query1);
-		$row1    = $result1->fetch_assoc();
-		$categoryName = $row1['name'];
-
-	    echo '<div class="category_list_name_income">'.$categoryName.':'.' '.$sumIncome.'</div>'.'<br/>';
-
-	    $query2 = "SELECT id, amount, date_of_income, income_comment FROM "
-	            . "`incomes` WHERE date_of_income BETWEEN '$startDate' "
-	            . " AND '$lastDate' AND user_id = '$userId' AND "
-	            . " income_category_assigned_to_user_id = '$incomeCategoryId'"
-	            . " ORDER BY amount DESC";
-
-        $result2 =  $this->dbo->query($query2);
-
-        while ($row2 = $result2->fetch_assoc()) :
-              $incomeId      = $row2['id'];
-		      $incomeDate    = $row2['date_of_income'];
-			  $incomeAmount  = $row2['amount'];
-			  $incomeComment = $row2['income_comment'];
-
-echo '<div class="category_list"><i class="icon-bank"></i>'
-	 . ' ' .$incomeAmount.' '.$incomeDate.'<i>'.'  '. $incomeComment.'</i>'
-	 .'<a href=index.php?action=showModifyIncomeForm&incomeId='.$incomeId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
-     .'<a href="index.php?action=dropSingleRecordOfIncome&incomeId='.$incomeId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
-
-endwhile; endwhile; endif;?>             
+if ($result = $this->dbo->query($queryIncome)):
+    while ($row = $result->fetch_assoc()):
+        $incomeCategoryId = $row['income_category_assigned_to_user_id'];
+        $sumIncome        = $row['SUM(amount)'];
+        $query1 = "SELECT * FROM incomes_category_assigned_to_users " . " WHERE id = '$incomeCategoryId'";
+        $result1      = $this->dbo->query($query1);
+        $row1         = $result1->fetch_assoc();
+        $categoryName = $row1['name'];
+        echo '<div class="category_list_name_income">' . $categoryName . ':' . ' ' . $sumIncome . '</div>' . '<br/>';
+        
+        $query2 = "SELECT id, amount, date_of_income, income_comment FROM " . "`incomes` WHERE date_of_income BETWEEN '$startDate' " . " AND '$lastDate' AND user_id = '$userId' AND " . " income_category_assigned_to_user_id = '$incomeCategoryId'" . " ORDER BY amount DESC";
+        
+        $result2 = $this->dbo->query($query2);
+        
+        while ($row2 = $result2->fetch_assoc()):
+            $incomeId      = $row2['id'];
+            $incomeDate    = $row2['date_of_income'];
+            $incomeAmount  = $row2['amount'];
+            $incomeComment = $row2['income_comment'];
+            echo '<div class="category_list"><i class="icon-bank"></i>' . ' ' . $incomeAmount . ' ' . $incomeDate . '<i>' . '  ' . $incomeComment . '</i>' . '<a href=index.php?action=showModifyIncomeForm&incomeId=' . $incomeId . '&peroid=currentMonth><i class="icon-pencil"></i></a>' . '<a href="index.php?action=dropSingleRecordOfIncome&incomeId=' . $incomeId . '&peroid=currentMonth"><i class="icon-trash"></i></a></div>' . '<br/>';
+        endwhile;
+    endwhile;
+endif;
+?>             
                             </td>
                         </tr>
                     </table>
-                    <table class='tableResultIncome'><tr><td><?='PRZYCHODY: '.$sumAllIncomes.'zł'?></td></tr></table>
+                    <table class='tableResultIncome'><tr><td><?= 'PRZYCHODY: ' . $sumAllIncomes . 'zł' ?></td></tr></table>
                 </div>
                 <div class="col-sm-6">
                     <table class="table2 responsive">
@@ -149,44 +143,37 @@ endwhile; endwhile; endif;?>
                         <tr>
                             <td id="tableExpense">
 <?php
-if ($result = $this->dbo->query($queryExpense)) :
-	while ($row = $result->fetch_assoc()) :
-          
-		$expenseCategoryId = $row['expense_category_assigned_to_user_id'];
-		$sumExpense        = $row['SUM(amount)'];
-
-		$query1  = "SELECT * FROM expenses_category_assigned_to_users "
-		         . " WHERE id = '$expenseCategoryId'";
-		
-        $result1 = $this->dbo->query($query1);
-		$row1    = $result1->fetch_assoc();
-		$categoryName = $row1['name'];
-
-	    echo '<div class="category_list_name_expense">'.$categoryName.':'.' '.$sumExpense.'</div>'.'<br/>';
-
-	    $query2 = "SELECT id, amount, date_of_expense, expense_comment FROM "
-		            . "`expenses` WHERE date_of_expense BETWEEN '$startDate' "
-	            . " AND '$lastDate' AND user_id = '$userId' AND "
-	            . " expense_category_assigned_to_user_id = '$expenseCategoryId'"
-	            . " ORDER BY amount DESC";
-        $result2   =  $this->dbo->query($query2);
-
-        while ($row2 = $result2->fetch_assoc()) :
-      	      $expenseId      = $row2['id'];									
-		      $expenseDate    = $row2['date_of_expense'];
-			  $expenseAmount  = $row2['amount'];
-			  $expenseComment = $row2['expense_comment'];
-                
-echo '<div class="category_list"><i class="icon-bank"></i>'
-     . ' ' .$expenseAmount.' '.$expenseDate.'<i> '.' '. $expenseComment.'</i>'
-     .'<a href=index.php?action=showModifyExpenseForm&expenseId='.$expenseId.'&peroid=currentMonth><i class="icon-pencil"></i></a>'
-     .'<a href="index.php?action=dropSingleRecordOfExpense&expenseId='.$expenseId.'&peroid=currentMonth"><i class="icon-trash"></i></a></div>'.'<br/>';
-
- endwhile; $dataPoints[] = array ("label"=>$categoryName, "y"=>$sumExpense); endwhile; endif;?>                 
+if ($result = $this->dbo->query($queryExpense)):
+    while ($row = $result->fetch_assoc()):
+        $expenseCategoryId = $row['expense_category_assigned_to_user_id'];
+        $sumExpense        = $row['SUM(amount)'];
+        $query1 = "SELECT * FROM expenses_category_assigned_to_users " . " WHERE id = '$expenseCategoryId'";
+        $result1      = $this->dbo->query($query1);
+        $row1         = $result1->fetch_assoc();
+        $categoryName = $row1['name'];
+        echo '<div class="category_list_name_expense">' . $categoryName . ':' . ' ' . $sumExpense . '</div>' . '<br/>';
+        
+        $query2  = "SELECT id, amount, date_of_expense, expense_comment FROM " . "`expenses` WHERE date_of_expense BETWEEN '$startDate' " . " AND '$lastDate' AND user_id = '$userId' AND " . " expense_category_assigned_to_user_id = '$expenseCategoryId'" . " ORDER BY amount DESC";
+        $result2 = $this->dbo->query($query2);
+        
+        while ($row2 = $result2->fetch_assoc()):
+            $expenseId      = $row2['id'];
+            $expenseDate    = $row2['date_of_expense'];
+            $expenseAmount  = $row2['amount'];
+            $expenseComment = $row2['expense_comment'];
+            echo '<div class="category_list"><i class="icon-bank"></i>' . ' ' . $expenseAmount . ' ' . $expenseDate . '<i> ' . ' ' . $expenseComment . '</i>' . '<a href=index.php?action=showModifyExpenseForm&expenseId=' . $expenseId . '&peroid=currentMonth><i class="icon-pencil"></i></a>' . '<a href="index.php?action=dropSingleRecordOfExpense&expenseId=' . $expenseId . '&peroid=currentMonth"><i class="icon-trash"></i></a></div>' . '<br/>';
+        endwhile;
+        $dataPoints[] = array(
+            "label" => $categoryName,
+            "y" => $sumExpense
+        );
+    endwhile;
+endif;
+?>                 
                             </td>
                         </tr>
                     </table>
-                    <table class='tableResultExpense'><tr><td><?='WYDATKI: '.$sumAllExpenses.'zł'?></td></tr></table>
+                    <table class='tableResultExpense'><tr><td><?= 'WYDATKI: ' . $sumAllExpenses . 'zł' ?></td></tr></table>
                 </div>
             </div>
 
@@ -195,16 +182,16 @@ echo '<div class="category_list"><i class="icon-bank"></i>'
                     <section class="comment" id="comment">
                         <h3 id="comentary">
                             <span>Bilans:
-                                <?php 
-                                    echo round($sumAllIncomes - $sumAllExpenses, 2).' zł'.'</br>';
+                                <?php
+echo round($sumAllIncomes - $sumAllExpenses, 2) . ' zł' . '</br>';
 
-                                    if ($sumAllIncomes > $sumAllExpenses) {
-                                        echo '<div class = "saving">'.'<br/>'."Świetnie zarządzasz swoimi finansami !".'</div>';
-                                    } else if ($sumAllIncomes < $sumAllExpenses) {
-                                              echo '<div class = "debt">'.'<br/>'."Uważaj !".'<br/>'."W tym okresie wygenerowałeś straty !".'</div>';
-                                    } else
-                                          echo '';
-                                ?></span></br>
+if ($sumAllIncomes > $sumAllExpenses) {
+    echo '<div class = "saving">' . '<br/>' . "Świetnie zarządzasz swoimi finansami !" . '</div>';
+} else if ($sumAllIncomes < $sumAllExpenses) {
+    echo '<div class = "debt">' . '<br/>' . "Uważaj !" . '<br/>' . "W tym okresie wygenerowałeś straty !" . '</div>';
+} else
+    echo '';
+?></span></br>
                         </h3>
                     </section>
                 </div>
@@ -224,7 +211,9 @@ echo '<div class="category_list"><i class="icon-bank"></i>'
                                         type: "pie",
                                         yValueFormatString: "#,##0.00\"zł\"",
                                         indexLabel: "{label} ({y})",
-                                        dataPoints: <?php echo json_encode($dataPoints); ?>	
+                                        dataPoints: <?php
+echo json_encode($dataPoints);
+?>    
                                         }]
                                     });
                                     chart.render();
@@ -233,10 +222,10 @@ echo '<div class="category_list"><i class="icon-bank"></i>'
                         </script>
 
                         <div id="chartContainer" style="height: 450px; width: 100%;"></div>
-                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>	
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>    
                     </article>
                 </div>
             </div>
         </article>
-    </article>			
+    </article>            
  </div> 

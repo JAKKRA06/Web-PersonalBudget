@@ -1,13 +1,16 @@
-<?php if (!isset($_SESSION['loginUser'])) exit(); ?>
+<?php
+if (!isset($_SESSION['loginUser']))
+    exit();
+?>
 <div class="row">
     <div class="col-sm-12">
         <section class="logger">
             <?php
-                $str = $_SESSION['loginUser'];
-                $str = strtoupper($str);
-                echo "Witaj: ".'<i>'.$str.'</i>';
-            ?>
-        </section>
+$str = $_SESSION['loginUser'];
+$str = strtoupper($str);
+echo "Witaj: " . '<i>' . $str . '</i>';
+?>
+       </section>
     </div>
               
     <div class="col-sm-12">
@@ -29,9 +32,9 @@
                 <a href="index.php?action=showBalance">Przeglądaj bilans</a>
                 <a href="index.php?action=showSettings">Ustawienia</a>
                 <?php
-                  echo '<a href="index.php?action=logout">Wyloguj</a>';
-                ?>
-                <a class="icon" onclick="myFunction()">
+echo '<a href="index.php?action=logout">Wyloguj</a>';
+?>
+               <a class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i></a>    
             </article>  
         </nav>                       
@@ -45,25 +48,29 @@
                 <p id="infoLimit"></p>
             </div>
                 <?php
-                    if(isset($_SESSION['statement'])) {
-                        $statement = $_SESSION['statement'];
-                        if($statement == 'Dodano wydatek !') {
-                           echo '<div class="success">'.$_SESSION['statement'].'</div>';
-                        } else {
-                           echo '<div class="warrning">'.$_SESSION['statement'].'</div>';
-                        }
-
-                       unset($_SESSION['statement']);
-                    }
-                ?>
+if (isset($_SESSION['statement'])) {
+    $statement = $_SESSION['statement'];
+    if ($statement == 'Dodano wydatek !') {
+        echo '<div class="success">' . $_SESSION['statement'] . '</div>';
+    } else {
+        echo '<div class="warrning">' . $_SESSION['statement'] . '</div>';
+    }
+    
+    unset($_SESSION['statement']);
+}
+?>
 
             <form method="post" action="index.php?action=addExpense">
                              
                 <article class="row">
                     <label class="col-sm-4 label">Kwota</label>
                         <div class="col-sm-8 label">
-                            <input type="text" name="expense_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'" value="<?php  if (isset($_SESSION['amountExpenseRemember'])) { echo $_SESSION['amountExpenseRemember']; unset($_SESSION['amountExpenseRemember']);
-                         } ?>">
+                            <input type="text" name="expense_amount" class="form-control" id="kwota" placeholder="kwota" onfocus="this.placeholder=''" onblur="this.placeholder='kwota'" value="<?php
+if (isset($_SESSION['amountExpenseRemember'])) {
+    echo $_SESSION['amountExpenseRemember'];
+    unset($_SESSION['amountExpenseRemember']);
+}
+?>">
                         </div>
                 </article>
 
@@ -78,12 +85,14 @@
                     <label class="col-sm-4 label">Kategoria</label>
                         <div class="col-sm-8 label">
                             <select class="custom-select" name="expense_category_select"> 
-                        <?php 
-                            $allExpenses = $PB->selectAllExpenses();
-                            while ($row = $allExpenses->fetch_assoc()) :
-                        ?>
-                        <option value="<?=$row['name']?>" type="text" id="kategoria"><?=$row['name']?></option>
-                        <?php endwhile;?> 
+                        <?php
+$allExpenses = $PB->selectAllExpenses();
+while ($row = $allExpenses->fetch_assoc()):
+?>
+                       <option value="<?= $row['name'] ?>" type="text" id="kategoria"><?= $row['name'] ?></option>
+                        <?php
+endwhile;
+?> 
                             </select> 
                         </div>
                 </article>
@@ -92,12 +101,14 @@
                     <label class="col-sm-6 label">Sposób płatności</label>
                         <div class="col-sm-6 label">
                             <select class="custom-select" name="expense_payment_method">
-                        <?php 
-                            $allPaymentMethods = $PB->selectAllPaymentMethods();
-                            while ($row = $allPaymentMethods->fetch_assoc()) :
-                        ?>
-                                <option value="<?=$row['name']?>" type="text" id="kategoria"><?=$row['name']?></option>
-                        <?php endwhile;?>                            
+                        <?php
+$allPaymentMethods = $PB->selectAllPaymentMethods();
+while ($row = $allPaymentMethods->fetch_assoc()):
+?>
+                               <option value="<?= $row['name'] ?>" type="text" id="kategoria"><?= $row['name'] ?></option>
+                        <?php
+endwhile;
+?>                            
                             </select>
                         </div>
                 </article> 
@@ -105,8 +116,12 @@
                 <article class="row">
                     <label class="col-sm-4 label">Komentarz</label>
                         <div class="col-sm-8 label">
-                      <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'" value="<?php  if (isset($_SESSION['commentExpenseRemember'])) { echo $_SESSION['commentExpenseRemember']; unset($_SESSION['commentExpenseRemember']);
-                         } ?>"> 
+                      <input type="text" name="expense_comment" class="form-control" placeholder="opcjonalnie" onfocus="this.placeholder=''" onblur="this.placeholder='opcjonalnie'" value="<?php
+if (isset($_SESSION['commentExpenseRemember'])) {
+    echo $_SESSION['commentExpenseRemember'];
+    unset($_SESSION['commentExpenseRemember']);
+}
+?>"> 
                     </div>
                 </article>
 

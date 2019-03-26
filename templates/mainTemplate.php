@@ -1,4 +1,7 @@
-<?php if (!isset($PB)) exit(); ?>
+<?php
+if (!isset($PB))
+    exit();
+?>
 <!DOCTYPE html>
 <html lang="PL">
 <head>
@@ -44,76 +47,76 @@
     <main>
         <div class="container">
             <?php
-              switch($action):
-                case 'showLoginForm' :
-                  include 'templates/loginForm.php';
-                  break;
-                case 'showRegistrationForm' :
-                  include 'templates/registrationForm.php';
+switch ($action):
+    case 'showLoginForm':
+        include 'templates/loginForm.php';
+        break;
+    case 'showRegistrationForm':
+        include 'templates/registrationForm.php';
+        break;
+    case 'showMain':
+        include 'templates/mainPage.php';
+        break;
+    case 'showIncomeForm':
+        include 'templates/incomeForm.php';
+        break;
+    case 'showExpenseForm':
+        include 'templates/expenseForm.php';
+        break;
+    case 'showBalance':
+        $peroid = 'currentMonth';
+        if (isset($_GET['peroid'])) {
+            $peroid = $_GET['peroid'];
+        }
+        if (isset($_POST['startDate'])) {
+            $startDate = $_POST['startDate'];
+        } else if (isset($_GET['startDate'])) {
+            $startDate = $_GET['startDate'];
+        } else {
+            $startDate = '';
+        }
+        if (isset($_POST['lastDate'])) {
+            $lastDate = $_POST['lastDate'];
+        } else if (isset($_GET['lastDate'])) {
+            $lastDate = $_GET['lastDate'];
+        } else {
+            $lastDate = '';
+        }
+        switch ($peroid) {
+            case 'currentMonth':
+                $PB->showBalance($peroid, $startDate, $lastDate);
                 break;
-                case 'showMain' :
-                  include 'templates/mainPage.php';
-                  break;
-                case 'showIncomeForm' :
-                  include 'templates/incomeForm.php';
-                  break;
-                case 'showExpenseForm' :
-                  include 'templates/expenseForm.php';
-                  break;
-                case 'showBalance' :
-                  $peroid    = 'currentMonth';
-                  if(isset($_GET['peroid'])) {
-                     $peroid = $_GET['peroid'];
-                  }
-                  if(isset($_POST['startDate'])) {
-                     $startDate = $_POST['startDate'];
-                  } else if(isset($_GET['startDate'])) {
-                     $startDate = $_GET['startDate'];
-                  } else {
-                     $startDate = '';
-                    }
-                  if(isset($_POST['lastDate'])) {
-                     $lastDate = $_POST['lastDate'];
-                  } else if(isset($_GET['lastDate'])) {
-                     $lastDate  = $_GET['lastDate'];
-                  } else {
-                    $lastDate = '';
-                  }
-                  switch ($peroid) {
-                    case 'currentMonth' :
-                      $PB->showBalance($peroid, $startDate, $lastDate);
-                      break;
-                    case 'previousMonth' :
-                      $PB->showBalance($peroid, $startDate, $lastDate);
-                      break;
-                    case 'currentYear' :
-                      $PB->showBalance($peroid, $startDate, $lastDate);
-                      break;
-                    case 'nonStandard' :
-                      $PB->showBalance($peroid, $startDate, $lastDate);
-                      break;
-                    }
-                  break;
-                case 'showSettings' :
-                  $allIncomes        = $PB->selectAllIncomes();
-                  $allExpenses       = $PB->selectAllExpenses();
-                  $allPaymentMethods = $PB->selectAllPaymentMethods();
-                  include 'templates/settingsForm.php';
-                  break;
-                case 'showRegistrationSuccess' :
-                  include 'templates/welcome.php';
-                  break;
-                case 'showModifyIncomeForm' :
-                  include 'templates/modifyIncomeForm.php';
-                  break;
-                case 'showModifyExpenseForm' :
-                  include 'templates/modifyExpenseForm.php';
-                  break;                
-                case 'showStart' :
-                default :
-                      include 'templates/startTemplate.php';
-              endswitch;
-            ?>
+            case 'previousMonth':
+                $PB->showBalance($peroid, $startDate, $lastDate);
+                break;
+            case 'currentYear':
+                $PB->showBalance($peroid, $startDate, $lastDate);
+                break;
+            case 'nonStandard':
+                $PB->showBalance($peroid, $startDate, $lastDate);
+                break;
+        }
+        break;
+    case 'showSettings':
+        $allIncomes        = $PB->selectAllIncomes();
+        $allExpenses       = $PB->selectAllExpenses();
+        $allPaymentMethods = $PB->selectAllPaymentMethods();
+        include 'templates/settingsForm.php';
+        break;
+    case 'showRegistrationSuccess':
+        include 'templates/welcome.php';
+        break;
+    case 'showModifyIncomeForm':
+        include 'templates/modifyIncomeForm.php';
+        break;
+    case 'showModifyExpenseForm':
+        include 'templates/modifyExpenseForm.php';
+        break;
+    case 'showStart':
+    default:
+        include 'templates/startTemplate.php';
+endswitch;
+?>
 
         </div>
     </main>

@@ -1,13 +1,16 @@
-<?php if (!isset($_SESSION['loginUser'])) exit(); ?>
+<?php
+if (!isset($_SESSION['loginUser']))
+    exit();
+?>
 <div class="row">
     <div class="col-sm-12">
         <section class="logger">
             <?php
-                $user = $PB->getActualUser();
-                $str = strtoupper($user);
-                echo "Witaj: ".'<i>'.$str.'</i>';
-            ?>
-        </section>
+$user = $PB->getActualUser();
+$str  = strtoupper($user);
+echo "Witaj: " . '<i>' . $str . '</i>';
+?>
+       </section>
     </div>
               
     <div class="col-sm-12">
@@ -29,9 +32,9 @@
                 <a href="index.php?action=showBalance">Przeglądaj bilans</a>
                 <a href="index.php?action=showSettings">Ustawienia</a>
                 <?php
-                  echo '<a href="index.php?action=logout">Wyloguj</a>';
-                ?>
-                <a class="icon" onclick="myFunction()">
+echo '<a href="index.php?action=logout">Wyloguj</a>';
+?>
+               <a class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i></a>    
             </article>  
         </nav>                       

@@ -1,4 +1,7 @@
-<?php if (!isset($PB)) die(); ?>
+<?php
+if (!isset($PB))
+    die();
+?>
 <div class="row">
     <div class="col-sm-12">
       <header><h2>TWÓJ OSOBISTY MENAGER FINANSÓW</h2></header>

@@ -1,4 +1,7 @@
-<?php if (!isset($PB)) die(); ?>
+<?php
+if (!isset($PB))
+    die();
+?>
 <div class="row">
     <div class="col-sm-12">
         <header><h2><a href="index.php">TWÓJ OSOBISTY MENAGER FINANSÓW</a></h2></header>
@@ -19,11 +22,12 @@
             <button type="submit" class="btn btn-lg btn-danger"><i class="icon-plus"></i>DOŁĄCZ</button>
             <button class="btn btn-lg btn-primary"><a href="index.php"><i class="icon-home"></i>POWRÓT</a></button>
         </form>
-          <?php if(isset($_SESSION['statement'])) {
-                  echo '<div class="error">'.$_SESSION['statement'].'</div>';
-                  unset($_SESSION['statement']);
-                }
-          ?>
-        </section>
+          <?php
+if (isset($_SESSION['statement'])) {
+    echo '<div class="error">' . $_SESSION['statement'] . '</div>';
+    unset($_SESSION['statement']);
+}
+?>
+       </section>
     </div>
 </div>
