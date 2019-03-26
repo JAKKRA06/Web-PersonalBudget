@@ -47,45 +47,39 @@ session_start();
     	$expensesAndCurrentAmount = ($sumAmountCategory+$amount);
     }
   
-    if($expenseLimit == 0) {
-	    echo '<div class="infoLimit">'."Nie ustawiono limitu w  wybranej kategorii. <br/>"
-	         ." Możesz to zrobić w ustawieniach.". '</div>';
+    if($expenseLimit > 0) {
 
-    } else {
     	if($expensesAndCurrentAmount > $expenseLimit) {
-			echo '<table id="tabelaAjaxNotOk">
-			<tr>
-				<th>Limit</th>
-				<th>Dotychczas wydano</th>
-				<th>Różnica</th>
-				<th>Wydatki + wpisana kwota</th>
-			</tr>
-			<tr>
-				<td>'.$expenseLimit.'</td>
-				<td>'.$sumAmountCategory.'</td>
-				<td>'.$actualExpenses.'</td>
-				<td>'.$expensesAndCurrentAmount.'</td>
-
-			</tr>
-		</table>';
-		} else {
-			echo '<table id="tabelaAjaxOk">
-			<tr>
-				<th>Limit</th>
-				<th>Dotychczas wydano</th>
-				<th>Różnica</th>
-				<th>Wydatki + wpisana kwota</th>
-			</tr>
-			<tr>
-				<td>'.$expenseLimit.'</td>
-				<td>'.$sumAmountCategory.'</td>
-				<td>'.$actualExpenses.'</td>
-				<td>'.$expensesAndCurrentAmount.'</td>
-
-			</tr>
-		</table>';
-
-		}
-	}
+    		echo '<table id="tabelaAjaxNotOk">
+            		<tr>
+            			<th>Limit</th>
+            			<th>Dotychczas wydano</th>
+            			<th>Różnica</th>
+            			<th>Wydatki + wpisana kwota</th>
+            		</tr>
+            		<tr>
+            			<td>'.$expenseLimit.'</td>
+            			<td>'.$sumAmountCategory.'</td>
+            			<td>'.$actualExpenses.'</td>
+            			<td>'.$expensesAndCurrentAmount.'</td>
+            		</tr>
+            	</table>';
+    	} else {
+    		echo '<table id="tabelaAjaxOk">
+            		<tr>
+            			<th>Limit</th>
+            			<th>Dotychczas wydano</th>
+            			<th>Różnica</th>
+            			<th>Wydatki + wpisana kwota</th>
+            		</tr>
+            		<tr>
+            			<td>'.$expenseLimit.'</td>
+            			<td>'.$sumAmountCategory.'</td>
+            			<td>'.$actualExpenses.'</td>
+            			<td>'.$expensesAndCurrentAmount.'</td>
+            		</tr>
+            	</table>';
+    	}
+    }
 
 ?>
