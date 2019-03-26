@@ -42,7 +42,7 @@
             <section class="title">DODAWANIE WYDATKU</section>
 
             <div id="ajaxResponse">
-                <p id="infoLimit">Brak informacji o limicie. Wpisz kwotę.</p>
+                <p id="infoLimit"></p>
             </div>
                 <?php
                     if(isset($_SESSION['statement'])) {
